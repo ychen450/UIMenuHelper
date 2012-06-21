@@ -7,27 +7,23 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "SMRotaryWheel.h"
-#import "SMRotaryProtocol.h"
-#import "SquareMenu.h"
-#import "SquareMenuProtocol.h"
-#import "PieChart.h"
+#import "RotateDemoViewController.h"
+#import "SquareDemoViewController.h"
 
-@interface ViewController : UIViewController <SMRotaryProtocol> {
+@interface ViewController : UIViewController <RotateControllerDelegate> {
     
-    BOOL squareup;
-    BOOL rotateup;
+    
 }
 
-@property (nonatomic, strong) SMRotaryWheel *wheel;
-@property (nonatomic, strong) SquareMenu *square;
-
-@property (strong, nonatomic) IBOutlet UIButton *btnPullSquare;
-@property (strong, nonatomic) IBOutlet UIButton *btnPullRotate;
-@property (strong, nonatomic) IBOutlet UILabel *templabel;
-
-- (IBAction)PullRotate:(id)sender;
-- (IBAction)PullSquare:(id)sender;
+//@property (nonatomic, strong) SMRotaryWheel *wheel;
+//@property (nonatomic, strong) SquareMenu *square;
+//
+//@property (strong, nonatomic) IBOutlet UIButton *btnPullSquare;
+//@property (strong, nonatomic) IBOutlet UIButton *btnPullRotate;
+//@property (strong, nonatomic) IBOutlet UILabel *templabel;
+//
+//- (IBAction)PullRotate:(id)sender;
+//- (IBAction)PullSquare:(id)sender;
 
 @end
 

@@ -65,7 +65,7 @@
     self.frame = CGRectMake(0, 480, self.frame.size.width , self.frame.size.height);
     [UIView animateWithDuration:0.6 delay:0.0 options:UIViewAnimationCurveEaseInOut
                      animations:^{
-                         self.frame = CGRectMake(0, 460-self.frame.size.height, self.frame.size.width , self.frame.size.height);
+                         self.frame = CGRectMake(0, 416-self.frame.size.height, self.frame.size.width , self.frame.size.height);
                      }
                      completion:nil];
 }
@@ -74,7 +74,7 @@
     
     [UIView animateWithDuration:0.6 delay:0.0 options:UIViewAnimationCurveEaseInOut
                      animations:^{
-                         self.frame = CGRectMake(0, 460, self.frame.size.width , self.frame.size.height);
+                         self.frame = CGRectMake(0, 416, self.frame.size.width , self.frame.size.height);
                      }
                      completion:nil];
     //[self removeFromSuperview];

@@ -20,6 +20,22 @@
 		B20CBB8F1587A61900BA2EDA /* SMRotaryWheel.m in Sources */ = {isa = PBXBuildFile; fileRef = B20CBB8D1587A61900BA2EDA /* SMRotaryWheel.m */; };
 		B20CBBAA1587C3D600BA2EDA /* SquareMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = B20CBBA91587C3D500BA2EDA /* SquareMenu.m */; };
 		B20CBBAE1587E46C00BA2EDA /* PieChart.m in Sources */ = {isa = PBXBuildFile; fileRef = B20CBBAD1587E46B00BA2EDA /* PieChart.m */; };
+		B25A0AE715912A6900A49B10 /* RotateDemoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B25A0AE615912A6900A49B10 /* RotateDemoViewController.m */; };
+		B25A0AEA15912AC100A49B10 /* SquareDemoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B25A0AE915912AC100A49B10 /* SquareDemoViewController.m */; };
+		B27440F81592C6E900EF1273 /* Page2ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B27440F61592C6E900EF1273 /* Page2ViewController.m */; };
+		B27440F91592C6E900EF1273 /* Page2ViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B27440F71592C6E900EF1273 /* Page2ViewController.xib */; };
+		B27440FD1592C70900EF1273 /* Page1ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B27440FB1592C70900EF1273 /* Page1ViewController.m */; };
+		B27440FE1592C70900EF1273 /* Page1ViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B27440FC1592C70900EF1273 /* Page1ViewController.xib */; };
+		B2CBF85515938E1000D7B879 /* Page3ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B2CBF85315938E1000D7B879 /* Page3ViewController.m */; };
+		B2CBF85615938E1000D7B879 /* Page3ViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B2CBF85415938E1000D7B879 /* Page3ViewController.xib */; };
+		B2CBF85B1593921800D7B879 /* Page4ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B2CBF8591593921800D7B879 /* Page4ViewController.m */; };
+		B2CBF85C1593921800D7B879 /* Page4ViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B2CBF85A1593921800D7B879 /* Page4ViewController.xib */; };
+		B2CBF8601593923200D7B879 /* Page5ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B2CBF85E1593923200D7B879 /* Page5ViewController.m */; };
+		B2CBF8611593923200D7B879 /* Page5ViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B2CBF85F1593923200D7B879 /* Page5ViewController.xib */; };
+		B2CBF8651593924400D7B879 /* Page6ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B2CBF8631593924400D7B879 /* Page6ViewController.m */; };
+		B2CBF8661593924400D7B879 /* Page6ViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B2CBF8641593924400D7B879 /* Page6ViewController.xib */; };
+		B2CBF86A159392D300D7B879 /* Page7ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B2CBF868159392D300D7B879 /* Page7ViewController.m */; };
+		B2CBF86B159392D300D7B879 /* Page7ViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B2CBF869159392D300D7B879 /* Page7ViewController.xib */; };
 		B2EF6ED5158A875400DD7558 /* myicon0.png in Resources */ = {isa = PBXBuildFile; fileRef = B2EF6EC7158A875400DD7558 /* myicon0.png */; };
 		B2EF6ED6158A875400DD7558 /* myicon1.png in Resources */ = {isa = PBXBuildFile; fileRef = B2EF6EC8158A875400DD7558 /* myicon1.png */; };
 		B2EF6ED7158A875400DD7558 /* myicon2.png in Resources */ = {isa = PBXBuildFile; fileRef = B2EF6EC9158A875400DD7558 /* myicon2.png */; };
@@ -65,6 +81,31 @@
 		B20CBBAB1587C45D00BA2EDA /* SquareMenuProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SquareMenuProtocol.h; sourceTree = "<group>"; };
 		B20CBBAC1587E46B00BA2EDA /* PieChart.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PieChart.h; sourceTree = "<group>"; };
 		B20CBBAD1587E46B00BA2EDA /* PieChart.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PieChart.m; sourceTree = "<group>"; };
+		B25A0AE515912A6900A49B10 /* RotateDemoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RotateDemoViewController.h; sourceTree = "<group>"; };
+		B25A0AE615912A6900A49B10 /* RotateDemoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RotateDemoViewController.m; sourceTree = "<group>"; };
+		B25A0AE815912AC100A49B10 /* SquareDemoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SquareDemoViewController.h; sourceTree = "<group>"; };
+		B25A0AE915912AC100A49B10 /* SquareDemoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SquareDemoViewController.m; sourceTree = "<group>"; };
+		B27440F51592C6E900EF1273 /* Page2ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Page2ViewController.h; sourceTree = "<group>"; };
+		B27440F61592C6E900EF1273 /* Page2ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Page2ViewController.m; sourceTree = "<group>"; };
+		B27440F71592C6E900EF1273 /* Page2ViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = Page2ViewController.xib; sourceTree = "<group>"; };
+		B27440FA1592C70900EF1273 /* Page1ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Page1ViewController.h; sourceTree = "<group>"; };
+		B27440FB1592C70900EF1273 /* Page1ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Page1ViewController.m; sourceTree = "<group>"; };
+		B27440FC1592C70900EF1273 /* Page1ViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = Page1ViewController.xib; sourceTree = "<group>"; };
+		B2CBF85215938E1000D7B879 /* Page3ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Page3ViewController.h; sourceTree = "<group>"; };
+		B2CBF85315938E1000D7B879 /* Page3ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Page3ViewController.m; sourceTree = "<group>"; };
+		B2CBF85415938E1000D7B879 /* Page3ViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = Page3ViewController.xib; sourceTree = "<group>"; };
+		B2CBF8581593921800D7B879 /* Page4ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Page4ViewController.h; sourceTree = "<group>"; };
+		B2CBF8591593921800D7B879 /* Page4ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Page4ViewController.m; sourceTree = "<group>"; };
+		B2CBF85A1593921800D7B879 /* Page4ViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = Page4ViewController.xib; sourceTree = "<group>"; };
+		B2CBF85D1593923200D7B879 /* Page5ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Page5ViewController.h; sourceTree = "<group>"; };
+		B2CBF85E1593923200D7B879 /* Page5ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Page5ViewController.m; sourceTree = "<group>"; };
+		B2CBF85F1593923200D7B879 /* Page5ViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = Page5ViewController.xib; sourceTree = "<group>"; };
+		B2CBF8621593924400D7B879 /* Page6ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Page6ViewController.h; sourceTree = "<group>"; };
+		B2CBF8631593924400D7B879 /* Page6ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Page6ViewController.m; sourceTree = "<group>"; };
+		B2CBF8641593924400D7B879 /* Page6ViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = Page6ViewController.xib; sourceTree = "<group>"; };
+		B2CBF867159392D300D7B879 /* Page7ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Page7ViewController.h; sourceTree = "<group>"; };
+		B2CBF868159392D300D7B879 /* Page7ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Page7ViewController.m; sourceTree = "<group>"; };
+		B2CBF869159392D300D7B879 /* Page7ViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = Page7ViewController.xib; sourceTree = "<group>"; };
 		B2EF6EC7158A875400DD7558 /* myicon0.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = myicon0.png; sourceTree = "<group>"; };
 		B2EF6EC8158A875400DD7558 /* myicon1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = myicon1.png; sourceTree = "<group>"; };
 		B2EF6EC9158A875400DD7558 /* myicon2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = myicon2.png; sourceTree = "<group>"; };
@@ -131,6 +172,39 @@
 		B20CBB6315879D9E00BA2EDA /* UIMenuHelper */ = {
 			isa = PBXGroup;
 			children = (
+				B25A0AE31591293A00A49B10 /* Images */,
+				B27441011592C76B00EF1273 /* Menus Class */,
+				B20CBBAC1587E46B00BA2EDA /* PieChart.h */,
+				B20CBBAD1587E46B00BA2EDA /* PieChart.m */,
+				B20CBB6C15879D9E00BA2EDA /* AppDelegate.h */,
+				B20CBB6D15879D9E00BA2EDA /* AppDelegate.m */,
+				B20CBB6F15879D9E00BA2EDA /* MainStoryboard.storyboard */,
+				B20CBB7215879D9E00BA2EDA /* ViewController.h */,
+				B20CBB7315879D9E00BA2EDA /* ViewController.m */,
+				B25A0AE515912A6900A49B10 /* RotateDemoViewController.h */,
+				B25A0AE615912A6900A49B10 /* RotateDemoViewController.m */,
+				B25A0AE815912AC100A49B10 /* SquareDemoViewController.h */,
+				B25A0AE915912AC100A49B10 /* SquareDemoViewController.m */,
+				B27440FF1592C73B00EF1273 /* PageViewControllers */,
+				B20CBB6415879D9E00BA2EDA /* Supporting Files */,
+			);
+			path = UIMenuHelper;
+			sourceTree = "<group>";
+		};
+		B20CBB6415879D9E00BA2EDA /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				B20CBB6515879D9E00BA2EDA /* UIMenuHelper-Info.plist */,
+				B20CBB6615879D9E00BA2EDA /* InfoPlist.strings */,
+				B20CBB6915879D9E00BA2EDA /* main.m */,
+				B20CBB6B15879D9E00BA2EDA /* UIMenuHelper-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		B25A0AE31591293A00A49B10 /* Images */ = {
+			isa = PBXGroup;
+			children = (
 				B2EF6EC7158A875400DD7558 /* myicon0.png */,
 				B2EF6EC8158A875400DD7558 /* myicon1.png */,
 				B2EF6EC9158A875400DD7558 /* myicon2.png */,
@@ -149,6 +223,41 @@
 				B2EF6EF8158A990C00DD7558 /* mysqab1.png */,
 				B2EF6EF9158A990C00DD7558 /* mysqab2.png */,
 				B2EF6EFC158A991500DD7558 /* mysqabg1.png */,
+			);
+			name = Images;
+			sourceTree = "<group>";
+		};
+		B27440FF1592C73B00EF1273 /* PageViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				B27440FA1592C70900EF1273 /* Page1ViewController.h */,
+				B27440FB1592C70900EF1273 /* Page1ViewController.m */,
+				B27440FC1592C70900EF1273 /* Page1ViewController.xib */,
+				B27440F51592C6E900EF1273 /* Page2ViewController.h */,
+				B27440F61592C6E900EF1273 /* Page2ViewController.m */,
+				B27440F71592C6E900EF1273 /* Page2ViewController.xib */,
+				B2CBF85215938E1000D7B879 /* Page3ViewController.h */,
+				B2CBF85315938E1000D7B879 /* Page3ViewController.m */,
+				B2CBF85415938E1000D7B879 /* Page3ViewController.xib */,
+				B2CBF8581593921800D7B879 /* Page4ViewController.h */,
+				B2CBF8591593921800D7B879 /* Page4ViewController.m */,
+				B2CBF85A1593921800D7B879 /* Page4ViewController.xib */,
+				B2CBF85D1593923200D7B879 /* Page5ViewController.h */,
+				B2CBF85E1593923200D7B879 /* Page5ViewController.m */,
+				B2CBF85F1593923200D7B879 /* Page5ViewController.xib */,
+				B2CBF8621593924400D7B879 /* Page6ViewController.h */,
+				B2CBF8631593924400D7B879 /* Page6ViewController.m */,
+				B2CBF8641593924400D7B879 /* Page6ViewController.xib */,
+				B2CBF867159392D300D7B879 /* Page7ViewController.h */,
+				B2CBF868159392D300D7B879 /* Page7ViewController.m */,
+				B2CBF869159392D300D7B879 /* Page7ViewController.xib */,
+			);
+			name = PageViewControllers;
+			sourceTree = "<group>";
+		};
+		B27441011592C76B00EF1273 /* Menus Class */ = {
+			isa = PBXGroup;
+			children = (
 				B20CBBAB1587C45D00BA2EDA /* SquareMenuProtocol.h */,
 				B20CBBA81587C3D500BA2EDA /* SquareMenu.h */,
 				B20CBBA91587C3D500BA2EDA /* SquareMenu.m */,
@@ -157,27 +266,8 @@
 				B20CBB8B1587A61900BA2EDA /* SMRotaryProtocol.h */,
 				B20CBB8C1587A61900BA2EDA /* SMRotaryWheel.h */,
 				B20CBB8D1587A61900BA2EDA /* SMRotaryWheel.m */,
-				B20CBBAC1587E46B00BA2EDA /* PieChart.h */,
-				B20CBBAD1587E46B00BA2EDA /* PieChart.m */,
-				B20CBB6C15879D9E00BA2EDA /* AppDelegate.h */,
-				B20CBB6D15879D9E00BA2EDA /* AppDelegate.m */,
-				B20CBB6F15879D9E00BA2EDA /* MainStoryboard.storyboard */,
-				B20CBB7215879D9E00BA2EDA /* ViewController.h */,
-				B20CBB7315879D9E00BA2EDA /* ViewController.m */,
-				B20CBB6415879D9E00BA2EDA /* Supporting Files */,
 			);
-			path = UIMenuHelper;
-			sourceTree = "<group>";
-		};
-		B20CBB6415879D9E00BA2EDA /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				B20CBB6515879D9E00BA2EDA /* UIMenuHelper-Info.plist */,
-				B20CBB6615879D9E00BA2EDA /* InfoPlist.strings */,
-				B20CBB6915879D9E00BA2EDA /* main.m */,
-				B20CBB6B15879D9E00BA2EDA /* UIMenuHelper-Prefix.pch */,
-			);
-			name = "Supporting Files";
+			name = "Menus Class";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -250,6 +340,13 @@
 				B2EF6EFA158A990C00DD7558 /* mysqab1.png in Resources */,
 				B2EF6EFB158A990C00DD7558 /* mysqab2.png in Resources */,
 				B2EF6EFD158A991500DD7558 /* mysqabg1.png in Resources */,
+				B27440F91592C6E900EF1273 /* Page2ViewController.xib in Resources */,
+				B27440FE1592C70900EF1273 /* Page1ViewController.xib in Resources */,
+				B2CBF85615938E1000D7B879 /* Page3ViewController.xib in Resources */,
+				B2CBF85C1593921800D7B879 /* Page4ViewController.xib in Resources */,
+				B2CBF8611593923200D7B879 /* Page5ViewController.xib in Resources */,
+				B2CBF8661593924400D7B879 /* Page6ViewController.xib in Resources */,
+				B2CBF86B159392D300D7B879 /* Page7ViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -267,6 +364,15 @@
 				B20CBB8F1587A61900BA2EDA /* SMRotaryWheel.m in Sources */,
 				B20CBBAA1587C3D600BA2EDA /* SquareMenu.m in Sources */,
 				B20CBBAE1587E46C00BA2EDA /* PieChart.m in Sources */,
+				B25A0AE715912A6900A49B10 /* RotateDemoViewController.m in Sources */,
+				B25A0AEA15912AC100A49B10 /* SquareDemoViewController.m in Sources */,
+				B27440F81592C6E900EF1273 /* Page2ViewController.m in Sources */,
+				B27440FD1592C70900EF1273 /* Page1ViewController.m in Sources */,
+				B2CBF85515938E1000D7B879 /* Page3ViewController.m in Sources */,
+				B2CBF85B1593921800D7B879 /* Page4ViewController.m in Sources */,
+				B2CBF8601593923200D7B879 /* Page5ViewController.m in Sources */,
+				B2CBF8651593924400D7B879 /* Page6ViewController.m in Sources */,
+				B2CBF86A159392D300D7B879 /* Page7ViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

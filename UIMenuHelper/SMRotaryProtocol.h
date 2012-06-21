@@ -9,6 +9,6 @@
 
 @protocol SMRotaryProtocol <NSObject>
 
-- (void) rotateDidChangeValue:(NSString *)newValue;
+- (void) rotateDidChangeValue:(NSNumber *)newValue;
 
 @end

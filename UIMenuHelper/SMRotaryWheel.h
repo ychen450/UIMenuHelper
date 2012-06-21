@@ -35,4 +35,5 @@
 - (void) buildClovesOdd;
 - (float) calculateDistanceFromCenter:(CGPoint)point;
 - (void) setImageFiles:(NSArray*)icons background:(NSString*)bg center:(NSString*)cen sector:(NSString*)sec1 sectorSel:(NSString*)sec2;
+
 @end

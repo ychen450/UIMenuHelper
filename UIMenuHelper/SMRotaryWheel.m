@@ -80,7 +80,7 @@ static float deltaAngle;
     } else {
         [self buildClovesOdd];
     }
-    [self.delegate rotateDidChangeValue:@""];
+    [self.delegate rotateDidChangeValue:[NSNumber numberWithInt:0]];
 }
 
 - (void) setImageFiles:(NSArray*)icons background:(NSString*)bg center:(NSString*)cen sector:(NSString*)sec1 sectorSel:(NSString*)sec2 {
@@ -119,8 +119,6 @@ static float deltaAngle;
         [cloves addObject:clove];
     }
 }
-
-
 
 
 - (float) calculateDistanceFromCenter:(CGPoint)point {
@@ -217,7 +215,7 @@ static float deltaAngle;
     UIImageView *iv = [images objectAtIndex:currentValue];
     iv.image = selectSectorImage;
     
-    [self.delegate rotateDidChangeValue:@""];
+    [self.delegate rotateDidChangeValue:[NSNumber numberWithInt:currentValue]];
 }
 
 - (void) buildClovesOdd {

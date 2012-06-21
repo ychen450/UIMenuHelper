@@ -129,19 +129,18 @@
     Page6ViewController *page6ViewController = [[Page6ViewController alloc] initWithNibName:@"Page6ViewController" bundle:nil];
     Page7ViewController *page7ViewController = [[Page7ViewController alloc] initWithNibName:@"Page7ViewController" bundle:nil];
     
-    NSArray *viewControllers = [NSArray arrayWithObjects:page1ViewController, page2ViewController, page3ViewController, page4ViewController, page5ViewController, page6ViewController, page7ViewController, nil];
-    
     if ([[segue identifier] isEqualToString:@"GoRotate"]) {
         
         RotateDemoViewController *rotateDemoViewController = [segue destinationViewController];
         rotateDemoViewController.delegate = self;
+        NSArray *viewControllers = [NSArray arrayWithObjects:page1ViewController, page2ViewController, page3ViewController, page4ViewController, page5ViewController, page6ViewController, page7ViewController, nil];
         rotateDemoViewController.viewControllers = viewControllers;
         
     } else if ([[segue identifier] isEqualToString:@"GoSquare"]) {
         
-        
-        
-        
+        SquareDemoViewController *squareDemoViewController = [segue destinationViewController];
+        NSArray *viewControllers = [NSArray arrayWithObjects:page1ViewController, page2ViewController, page3ViewController, page4ViewController, page5ViewController, page6ViewController, nil];
+        squareDemoViewController.viewControllers = viewControllers;
     }
                
 }

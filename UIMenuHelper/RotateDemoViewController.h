@@ -29,7 +29,7 @@
 - (void)setSelectedViewController:(UIViewController *)viewController animated:(BOOL)animated;
 
 - (IBAction)pullRotate:(id)sender;
-
+- (IBAction)backToMenu:(id)sender; 
 
 @end
 

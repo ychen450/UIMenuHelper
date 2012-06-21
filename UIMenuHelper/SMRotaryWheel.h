@@ -11,6 +11,7 @@
 
 @interface SMRotaryWheel : UIView {
     BOOL touchDo;
+    int touchNum;
     
     UIImage *bgImage;
     UIImage *centerImage;
@@ -25,6 +26,7 @@
 @property (nonatomic, strong) NSMutableArray *images;
 @property CGAffineTransform startTransform;
 @property int currentValue;
+@property int previousValue;
 @property int numberOfSections;
 @property CGPoint wheelCenter;
 @property (nonatomic, strong) NSMutableDictionary *cloveNames;

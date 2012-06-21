@@ -17,7 +17,7 @@ static float deltaAngle;
 
 @implementation SMRotaryWheel
 
-@synthesize startTransform, container, cloves, currentValue, delegate, wheelCenter, cloveNames, numberOfSections, images;
+@synthesize startTransform, container, cloves, currentValue, previousValue, delegate, wheelCenter, cloveNames, numberOfSections, images;
 
               
 - (id) initWithFrame:(CGRect)frame andDelegate:(id)del withSections:(int)sectionsNumber {
@@ -145,24 +145,28 @@ static float deltaAngle;
     
     startTransform = container.transform;
     
+    CGFloat radians = atan2f(startTransform.b, startTransform.a);
+    NSLog(@"start transform: %f", RADIANS_TO_DEGREES(radians));
+    
     UIImageView *iv = [images objectAtIndex:currentValue];
     iv.image = sectorImage;
     
 	float dx = delta.x  - container.center.x;
 	float dy = delta.y  - container.center.y;
-	deltaAngle = atan2(dy,dx); 
+	deltaAngle = atan2(dy,dx);
     
+    touchNum = 1;
+    NSLog(@"touch began, num %d",touchNum);
 }
 
 
 - (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event
 {
-    UITouch *touch = [touches anyObject];
-    CGPoint pt = [touch locationInView:self];
-    
     if (touchDo == NO) {
         return;
     }
+    UITouch *touch = [touches anyObject];
+    CGPoint pt = [touch locationInView:self];
     
 	float dx = pt.x  - container.center.x;
 	float dy = pt.y  - container.center.y;
@@ -173,19 +177,78 @@ static float deltaAngle;
     CGAffineTransform newTrans = CGAffineTransformRotate(startTransform, -angleDif);
     container.transform = newTrans;
     
-    //[self sendActionsForControlEvents:UIControlEventValueChanged];
+    if (touchNum==1) {
+        touchNum++;
+    }
 }
 
 
 - (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
 
+    NSLog(@"touch ended");
+    
     if (touchDo == NO) {
+        return;
+    }
+    if (touchNum==1) {
+        NSLog(@"single touch");
+        UITouch *touch = [touches anyObject];
+        CGPoint pt = [touch locationInView:self];
+        
+        float dx = pt.x  - container.center.x;
+        float dy = pt.y  - container.center.y;
+        float ang = atan2(dy,dx);
+        
+        // do something to deltaangle
+        deltaAngle = -1.52;
+        
+        float angleDif = deltaAngle - ang;
+        
+        [UIView beginAnimations:nil context:NULL];
+        [UIView setAnimationDuration:0.5];
+        
+        CGAffineTransform newTrans = CGAffineTransformRotate(startTransform, angleDif);
+        container.transform = newTrans;
+        
+        [UIView commitAnimations];
+        
+        CGFloat radians = atan2f(container.transform.b, container.transform.a);
+        CGFloat newVal = 0.0;
+        
+        for (SMClove *c in cloves) {
+            if (c.minValue > 0 && c.maxValue < 0) {
+                if (c.maxValue > radians || c.minValue < radians) {
+                    if (radians > 0) {
+                        newVal = radians - M_PI;
+                    } else {
+                        newVal = M_PI + radians;                    
+                    }
+                    currentValue = c.value;
+                }
+            }
+            if (radians > c.minValue && radians < c.maxValue) {
+                newVal = radians - c.midValue;
+                currentValue = c.value;
+            }
+        }
+        [UIView beginAnimations:nil context:NULL];
+        [UIView setAnimationDuration:0.2];
+        
+        CGAffineTransform t = CGAffineTransformRotate(container.transform, -newVal);
+        container.transform = t;
+        
+        [UIView commitAnimations];
+        
+        UIImageView *iv = [images objectAtIndex:currentValue];
+        iv.image = selectSectorImage;
+        
+        [self.delegate rotateDidChangeValue:[NSNumber numberWithInt:currentValue]];
+        previousValue = currentValue;
+
         return;
     }
     
     CGFloat radians = atan2f(container.transform.b, container.transform.a);
-    NSLog(@"rad is %f", radians);
-    
     CGFloat newVal = 0.0;
     
     for (SMClove *c in cloves) {
@@ -216,6 +279,7 @@ static float deltaAngle;
     iv.image = selectSectorImage;
     
     [self.delegate rotateDidChangeValue:[NSNumber numberWithInt:currentValue]];
+    previousValue = currentValue;
 }
 
 - (void) buildClovesOdd {

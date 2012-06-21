@@ -77,6 +77,11 @@
     }
 }
 
+- (IBAction)backToMenu:(id)sender {
+    
+    [self dismissModalViewControllerAnimated:YES];
+}
+
 - (void) rotateDidChangeValue:(NSNumber *)newValue {
     
     [self setSelectedIndex:[newValue integerValue] animated:YES];

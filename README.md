@@ -1,78 +1,63 @@
-TextFieldHelper
+UIMenuHelper
 ===============
 
-iOS UITextField Helper
-UIView+Textfield class and demos
+iOS Rotate and Square Menu Helper
 
 ##Features:
-* Animating the view to make the edited text field visible.
-* End editing and dismiss the keyboard by return key or tap outside the keyboard
-* Return key type in sequence "Next" and "Go". "Next" goes to the next text field automatically.
-* Validation including mininum length, maximun length, email, number only, and re-enter password check.
+* Rotate menu that can scroll circularly or tap to automatically rotate. 
+* Square menu that can slide up through swipe gesture and present notification.
+* Menus control and present the selected child view controllers. 
 
 ##How to use:
-* Put UIView+Textfield class (.h and .m) into your project. Remember to #import "UIVew+Textfield.h" and <UITextFieldDelegate> when using.
-* Set up in ViewDidLoad: (for example, your textfield is _userNameField and _passwordField)
+* Put RotateMenu and SquareMenu class (.h and .m) into your project. Remember to #import "RotateMenu.h", #import "SquareMenu.h" and <RotateMenuDelegate>, <SquareMenuDelegate> when using.
+* Set up in ViewDidLoad:
       ```objc
-      _userNameField.delegate = self;
-      _passwordField.delegate = self;
-
-      NSMutableDictionary *usernameDict = [[NSMutableDictionary alloc] init];
-      [usernameDict setObject:_userNameField forKey:@"textfield"];
-      [usernameDict setObject:[NSNumber numberWithInt:6] forKey:@"minlength"];                        // optional
-      [usernameDict setObject:USERNAME_ERROR_SHORT forKey:@"minerror"];                               // optional
-      [usernameDict setObject:[NSNumber numberWithInt:60] forKey:@"maxlength"];                       // optional
-      [usernameDict setObject:USERNAME_ERROR_LONG forKey:@"maxerror"];                                // optional
-      [usernameDict setObject:[NSString stringWithString:@"EMAIL"] forKey:@"validationoption"];       // optional
-      [usernameDict setObject:[NSArray arrayWithObject:validationResult] forKey:@"validationlabel"];  // optional
-
-      NSMutableDictionary *passwordDict = [[NSMutableDictionary alloc] init];
-      [passwordDict setObject:_passwordField forKey:@"textfield"];
-      [passwordDict setObject:[NSNumber numberWithInt:10] forKey:@"minlength"];                       // optional
-      [passwordDict setObject:PASSWORD_ERROR_SHORT forKey:@"minerror"];                               // optional
-      [passwordDict setObject:[NSArray arrayWithObject:validationResult] forKey:@"validationlabel"];  // optional
-
-      NSArray *textfieldArray = [NSArray arrayWithObjects:usernameDict, passwordDict, nil];
-      [self.view setTextField:textfieldArray];
+      contentContainerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 384)];
+      [self.view addSubview:contentContainerView];
+    
+      UIViewController *toViewController;
+      toViewController = [_viewControllers objectAtIndex:0];
+      toViewController.view.frame = contentContainerView.bounds;
+      [contentContainerView addSubview:toViewController.view];
       ```
 
-    If validation needed,
+* Paste the following code outside of ViewDidLoad, connect your button for pulling up the menu:
       ```objc
-      [[NSNotificationCenter defaultCenter] addObserver:self 
-                                         selector:@selector(validateInputCallback:) 
-                                             name:@"UITextFieldTextDidChangeNotification" 
-                                           object:nil];
-      ```
+      - (IBAction)pullRotate:(id)sender {
+    
+    if (wheel == nil) {
+        // Rotate menu setup
+        wheel = [[RotateMenu alloc] initWithFrame:CGRectMake(0, 0 , 320, 320) 
+                                         andDelegate:self 
+                                        withSections:7];
+        NSArray *icons = [NSArray arrayWithObjects:@"myicon0.png", @"myicon1.png", @"myicon2.png", @"myicon3.png", @"myicon4.png", @"myicon5.png", @"myicon6.png", nil];
+        [wheel setImageFiles:icons background:@"myrotbg.png" center:@"myrotcenter.png" sector:@"myrotsec.png" sectorSel:@"myrotsec2.png"];
+        wheel.center = CGPointMake(160, 256);
+        wheel.frame = CGRectMake(0, 428, 320, 320);
+        
+    }
+    if (rotateup == NO) {
+        [self.view addSubview:wheel];
+        [UIView animateWithDuration:0.6 delay:0.0 options:UIViewAnimationCurveEaseInOut
+                         animations:^{
+                             wheel.frame = CGRectMake(0, 140, 320, 320);
+                             pullRotateBtn.frame = CGRectMake(0, 140, 320, 32);
+                         }
+                         completion:nil];
+        [self.view bringSubviewToFront:pullRotateBtn];
+        [pullRotateBtn setImage:[UIImage imageNamed:@"myrotbtn2.png"] forState:UIControlStateNormal];
+        rotateup = YES;
+    } else {
+        [UIView animateWithDuration:0.6 delay:0.0 options:UIViewAnimationCurveEaseInOut
+                         animations:^{
+                             wheel.frame = CGRectMake(0, 428, 320, 320);
+                             pullRotateBtn.frame = CGRectMake(0, 428, 320, 32);
+                         }
+                         completion:nil];
+        [pullRotateBtn setImage:[UIImage imageNamed:@"myrotbtn1.png"] forState:UIControlStateNormal];
+        rotateup = NO;
+    }
+}
 
-* Paste the following code outside of ViewDidLoad:
-      ```objc
-      - (BOOL)textFieldShouldReturn:(UITextField *)textField 
-      {    
-            [self.view textfieldReturn:textField];
-            return NO;
-      }
- 
-      - (void)textFieldDidBeginEditing:(UITextField *)textField
-      {
-            [self.view textfieldMakeVisible:textField];
-      }
- 
-      - (void)textFieldDidEndEditing:(UITextField *)textField
-      {
-            [self.view textfieldEndEdit:textField];
-      }
- 
-      - (void)touchesEnded: (NSSet *) touches withEvent: (UIEvent *) event {   
-            [self.view textfieldTouchToReturn];
-      }
- 
-      - (void)validateInputCallback:(id)sender
-      {
-            if ([self.view validateInput]) {
-                  _enrollButton.enabled = true;
-            } else {
-                  _enrollButton.enabled = false;
-            }
-      }
       ```
 

@@ -2,9 +2,10 @@
 //  Page3ViewController.m
 //  UIMenuHelper
 //
-//  Created by Yan-Ling, Chen on 6/21/12.
-//  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
+//  Created by Chen, Yan-Ling on 5/31/12.
+//  Copyright (c) 2012 Chen, Yan-Ling. 
 //
+//  Released under the MIT License.
 
 #import "Page3ViewController.h"
 

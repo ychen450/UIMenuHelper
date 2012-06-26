@@ -18,7 +18,7 @@ static float deltaAngle;
 
 @implementation RotateMenu
 
-@synthesize startTransform, container, currentValue, previousValue, delegate, wheelCenter, cloveNames, numberOfSections, images;
+@synthesize startTransform, container, currentValue, previousValue, delegate, wheelCenter, cloveNames, numberOfSections, images, rotateEnable, iconFaceDown;
 
 
 - (id) initWithFrame:(CGRect)frame andDelegate:(id)del withSections:(int)sectionsNumber {
@@ -34,10 +34,15 @@ static float deltaAngle;
 
 - (void) initWheel {
     
+    //self.center = CGPointMake(160, 256);
+    rotateEnable = YES;
+    iconFaceDown = NO;
     container = [[UIView alloc] initWithFrame:self.frame];
     
     images = [NSMutableArray arrayWithCapacity:numberOfSections];
     cloveArray = [[NSMutableArray alloc] initWithCapacity:numberOfSections];
+    icons = [NSMutableArray arrayWithCapacity:numberOfSections];
+    iconTransform = [NSMutableArray arrayWithCapacity:numberOfSections];
     
     // Calculate angle between each clove
     CGFloat angleSize = 2*M_PI/numberOfSections;
@@ -56,9 +61,14 @@ static float deltaAngle;
             im.image = selectSectorImage;
         }
         
-        UIImageView *cloveImage = [[UIImageView alloc] initWithFrame:CGRectMake(0, 10, 130, 70)];
+        UIImageView *cloveImage = [[UIImageView alloc] initWithFrame:CGRectMake(22.5, 12, 85, 85)];
+        cloveImage.tag = i;
         cloveImage.image = [UIImage imageNamed:[iconsFile objectAtIndex:i]];
+        if (iconFaceDown) {
+            cloveImage.transform = CGAffineTransformMakeRotation(-angleSize*(i));
+        }
         [im addSubview:cloveImage];
+        [icons addObject:cloveImage];
         
         [container addSubview:im];
         [images addObject:im];
@@ -75,6 +85,13 @@ static float deltaAngle;
     mask.image = centerImage;
     mask.center = self.center;
     [self addSubview:mask];
+    
+    rotateup = NO;
+    UIButton *rotateBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    rotateBtn.frame = CGRectMake(0, 0, 320, 32);
+    [rotateBtn setBackgroundImage:[UIImage imageNamed:@"myrotbtn1.png"] forState:UIControlStateNormal];
+    [rotateBtn addTarget:self action:@selector(ClickRotateBtn:) forControlEvents:UIControlEventTouchUpInside];
+    [self addSubview:rotateBtn];
     
     if (numberOfSections % 2 == 0) {
         [self buildClovesEven];
@@ -95,6 +112,30 @@ static float deltaAngle;
     [self initWheel];
 }
 
+- (IBAction)ClickRotateBtn:(id)sender {
+    
+    UIButton *btn = (UIButton*)sender;
+    if (rotateup == NO) {
+        [UIView animateWithDuration:0.6 delay:0.0 options:UIViewAnimationCurveEaseInOut
+                         animations:^{
+                             self.frame = CGRectMake(0, 140, 320, 320);
+                             btn.frame = CGRectMake(0, 0, 320, 32);
+                         }
+                         completion:nil];
+        [btn setImage:[UIImage imageNamed:@"myrotbtn2.png"] forState:UIControlStateNormal];
+        rotateup = YES;
+    } else {
+        [UIView animateWithDuration:0.6 delay:0.0 options:UIViewAnimationCurveEaseInOut
+                         animations:^{
+                             self.frame = CGRectMake(0, 428, 320, 320);
+                             btn.frame = CGRectMake(0, 288, 320, 32);
+                         }
+                         completion:nil];
+        [btn setImage:[UIImage imageNamed:@"myrotbtn1.png"] forState:UIControlStateNormal];
+        rotateup = NO;
+    }
+
+}
 
 - (void) buildClovesEven {
     
@@ -167,6 +208,14 @@ static float deltaAngle;
     
     startTransform = container.transform;
     
+    if (iconFaceDown) {
+        [iconTransform removeAllObjects];
+        for (UIImageView *iconiv in icons) {
+            NSValue *v = [NSValue valueWithCGAffineTransform:iconiv.transform];
+            [iconTransform addObject:v];
+        }
+    }
+    
     CGFloat radians = atan2f(startTransform.b, startTransform.a);
     NSLog(@"start transform: %f", RADIANS_TO_DEGREES(radians));
     
@@ -187,18 +236,28 @@ static float deltaAngle;
     if (touchDo == NO) {
         return;
     }
-    UITouch *touch = [touches anyObject];
-    CGPoint pt = [touch locationInView:self];
     
-	float dx = pt.x  - container.center.x;
-	float dy = pt.y  - container.center.y;
-	float ang = atan2(dy,dx);
-    
-    float angleDif = deltaAngle - ang;
-    
-    CGAffineTransform newTrans = CGAffineTransformRotate(startTransform, -angleDif);
-    container.transform = newTrans;
-    
+    if (rotateEnable) {
+        UITouch *touch = [touches anyObject];
+        CGPoint pt = [touch locationInView:self];
+        
+        float dx = pt.x  - container.center.x;
+        float dy = pt.y  - container.center.y;
+        float ang = atan2(dy,dx);
+        
+        float angleDif = deltaAngle - ang;
+        
+        CGAffineTransform newTrans = CGAffineTransformRotate(startTransform, -angleDif);
+        container.transform = newTrans;
+        
+        if (iconFaceDown) {
+            for (UIImageView *iconiv in icons) {
+                CGAffineTransform at = [[iconTransform objectAtIndex:iconiv.tag] CGAffineTransformValue];
+                iconiv.transform = CGAffineTransformRotate(at, angleDif);
+            }
+        }
+    }
+        
     if (touchNum==1) {
         touchNum++;
     }
@@ -206,8 +265,6 @@ static float deltaAngle;
 
 
 - (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
-    
-    NSLog(@"touch ended");
     
     if (touchDo == NO) {
         return;
@@ -221,21 +278,12 @@ static float deltaAngle;
         float dy = pt.y  - container.center.y;
         float ang = atan2(dy,dx);
         
-        // do something to deltaangle
         deltaAngle = -1.52;
         
         float angleDif = deltaAngle - ang;
         
         CGAffineTransform newTrans = CGAffineTransformRotate(startTransform, angleDif);
         
-//        [UIView beginAnimations:nil context:NULL];
-//        [UIView setAnimationDuration:0.5];
-//        
-//        container.transform = newTrans;
-//        
-//        [UIView commitAnimations];
-        
-        //CGFloat radians = atan2f(container.transform.b, container.transform.a);
         CGFloat radians = atan2f(newTrans.b, newTrans.a);
         CGFloat newVal = 0.0;
         
@@ -265,10 +313,14 @@ static float deltaAngle;
         [UIView setAnimationDuration:0.6];
         
         CGAffineTransform t = CGAffineTransformRotate(startTransform, angleDif-newVal);
-        
-        //CGAffineTransform t = CGAffineTransformRotate(container.transform, -newVal);
         container.transform = t;
         
+        if (iconFaceDown) {
+            for (UIImageView *iconiv in icons) {
+                CGAffineTransform at = [[iconTransform objectAtIndex:iconiv.tag] CGAffineTransformValue];
+                iconiv.transform = CGAffineTransformRotate(at, newVal-angleDif);
+            }
+        }
         [UIView commitAnimations];
         
         UIImageView *iv = [images objectAtIndex:currentValue];
@@ -279,43 +331,52 @@ static float deltaAngle;
         
         return;
     }
-    
-    CGFloat radians = atan2f(container.transform.b, container.transform.a);
-    CGFloat newVal = 0.0;
-    
-    for (NSMutableDictionary *dic in cloveArray) {
-        float max = [[dic objectForKey:@"maxValue"] floatValue];
-        float min = [[dic objectForKey:@"minValue"] floatValue];
+    if (rotateEnable) {
+        CGFloat radians = atan2f(container.transform.b, container.transform.a);
+        CGFloat newVal = 0.0;
         
-        if (min > 0 && max < 0) {
-            if (max > radians || min < radians) {
-                if (radians > 0) {
-                    newVal = radians - M_PI;
-                } else {
-                    newVal = M_PI + radians;
+        for (NSMutableDictionary *dic in cloveArray) {
+            float max = [[dic objectForKey:@"maxValue"] floatValue];
+            float min = [[dic objectForKey:@"minValue"] floatValue];
+            
+            if (min > 0 && max < 0) {
+                if (max > radians || min < radians) {
+                    if (radians > 0) {
+                        newVal = radians - M_PI;
+                    } else {
+                        newVal = M_PI + radians;
+                    }
+                    currentValue = [[dic objectForKey:@"value"] intValue];
                 }
+            }
+            if (radians > min && radians < max) {
+                newVal = radians - [[dic objectForKey:@"midValue"] floatValue];
                 currentValue = [[dic objectForKey:@"value"] intValue];
             }
         }
-        if (radians > min && radians < max) {
-            newVal = radians - [[dic objectForKey:@"midValue"] floatValue];
-            currentValue = [[dic objectForKey:@"value"] intValue];
+        
+        [UIView beginAnimations:nil context:NULL];
+        [UIView setAnimationDuration:0.2];
+        
+        CGAffineTransform t = CGAffineTransformRotate(container.transform, -newVal);
+        container.transform = t;
+        
+        if (iconFaceDown) {
+            for (UIImageView *iconiv in icons) {
+                iconiv.transform = CGAffineTransformRotate(iconiv.transform, newVal);
+            }
         }
+        [UIView commitAnimations];
+        
+        UIImageView *iv = [images objectAtIndex:currentValue];
+        iv.image = selectSectorImage;
+        
+        [self.delegate rotateDidChangeValue:[NSNumber numberWithInt:currentValue]];
+        previousValue = currentValue;
+    } else {
+        UIImageView *iv = [images objectAtIndex:currentValue];
+        iv.image = selectSectorImage;
     }
-    
-    [UIView beginAnimations:nil context:NULL];
-    [UIView setAnimationDuration:0.2];
-    
-    CGAffineTransform t = CGAffineTransformRotate(container.transform, -newVal);
-    container.transform = t;
-    
-    [UIView commitAnimations];
-    
-    UIImageView *iv = [images objectAtIndex:currentValue];
-    iv.image = selectSectorImage;
-    
-    [self.delegate rotateDidChangeValue:[NSNumber numberWithInt:currentValue]];
-    previousValue = currentValue;
 }
 
 

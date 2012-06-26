@@ -13,6 +13,7 @@
 
 @interface RotateMenu : UIView {
     
+    BOOL rotateup;
     BOOL touchDo;
     int touchNum;
     
@@ -23,6 +24,8 @@
     UIImage *selectSectorImage;
     
     NSMutableArray *cloveArray;
+    NSMutableArray *icons;
+    NSMutableArray *iconTransform;
 }
 
 @property (weak) id <RotateMenuDelegate> delegate;
@@ -32,6 +35,8 @@
 @property int currentValue;
 @property int previousValue;
 @property int numberOfSections;
+@property BOOL rotateEnable;
+@property BOOL iconFaceDown;
 @property CGPoint wheelCenter;
 @property (nonatomic, strong) NSMutableDictionary *cloveNames;
 
@@ -41,6 +46,8 @@
 - (void) buildClovesOdd;
 - (float) calculateDistanceFromCenter:(CGPoint)point;
 - (void) setImageFiles:(NSArray*)icons background:(NSString*)bg center:(NSString*)cen sector:(NSString*)sec1 sectorSel:(NSString*)sec2;
+
+- (IBAction)ClickRotateBtn:(id)sender;
 
 @end
 

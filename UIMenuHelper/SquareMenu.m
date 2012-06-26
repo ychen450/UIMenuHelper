@@ -51,6 +51,8 @@
         [tempbtnarray addObject:btn];
     }
     btnArray = [NSArray arrayWithArray:tempbtnarray];
+    
+    //[self.delegate squareDidChangeValue:0];
 }
 
 - (IBAction)selectSquare:(id)sender {

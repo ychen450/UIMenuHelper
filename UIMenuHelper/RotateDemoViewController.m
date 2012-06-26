@@ -23,8 +23,6 @@
     
     [super viewDidLoad];
     
-    NSLog(@"view did load");
-    
 	contentContainerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 384)];
 	[self.view addSubview:contentContainerView];
     
@@ -33,7 +31,16 @@
     toViewController.view.frame = contentContainerView.bounds;
     [contentContainerView addSubview:toViewController.view];
     
-	//[self reloadTabButtons];
+    wheel = [[RotateMenu alloc] initWithFrame:CGRectMake(0, 0 , 320, 320) 
+                                  andDelegate:self 
+                                 withSections:7];
+    NSArray *icons = [NSArray arrayWithObjects:@"myicon0.png", @"myicon1.png", @"myicon2.png", @"myicon3.png", @"myicon4.png", @"myicon5.png", @"myicon6.png", nil];
+    [wheel setImageFiles:icons background:@"myrotbg.png" center:@"myrotcenter.png" sector:@"myrotsec.png" sectorSel:@"myrotsec2.png"];
+    wheel.rotateEnable = NO;
+    wheel.iconFaceDown = NO;
+    wheel.center = CGPointMake(160, 256);
+    wheel.frame = CGRectMake(0, 428, 320, 320);
+    [self.view addSubview:wheel];
 }
 
 
@@ -42,41 +49,6 @@
     [super viewDidUnload];
 }
 
-- (IBAction)pullRotate:(id)sender {
-    
-    if (wheel == nil) {
-        // Rotate menu setup
-        wheel = [[RotateMenu alloc] initWithFrame:CGRectMake(0, 0 , 320, 320) 
-                                         andDelegate:self 
-                                        withSections:7];
-        NSArray *icons = [NSArray arrayWithObjects:@"myicon0.png", @"myicon1.png", @"myicon2.png", @"myicon3.png", @"myicon4.png", @"myicon5.png", @"myicon6.png", nil];
-        [wheel setImageFiles:icons background:@"myrotbg.png" center:@"myrotcenter.png" sector:@"myrotsec.png" sectorSel:@"myrotsec2.png"];
-        wheel.center = CGPointMake(160, 256);
-        wheel.frame = CGRectMake(0, 428, 320, 320);
-        
-    }
-    if (rotateup == NO) {
-        [self.view addSubview:wheel];
-        [UIView animateWithDuration:0.6 delay:0.0 options:UIViewAnimationCurveEaseInOut
-                         animations:^{
-                             wheel.frame = CGRectMake(0, 140, 320, 320);
-                             pullRotateBtn.frame = CGRectMake(0, 140, 320, 32);
-                         }
-                         completion:nil];
-        [self.view bringSubviewToFront:pullRotateBtn];
-        [pullRotateBtn setImage:[UIImage imageNamed:@"myrotbtn2.png"] forState:UIControlStateNormal];
-        rotateup = YES;
-    } else {
-        [UIView animateWithDuration:0.6 delay:0.0 options:UIViewAnimationCurveEaseInOut
-                         animations:^{
-                             wheel.frame = CGRectMake(0, 428, 320, 320);
-                             pullRotateBtn.frame = CGRectMake(0, 428, 320, 32);
-                         }
-                         completion:nil];
-        [pullRotateBtn setImage:[UIImage imageNamed:@"myrotbtn1.png"] forState:UIControlStateNormal];
-        rotateup = NO;
-    }
-}
 
 - (IBAction)backToMenu:(id)sender {
     

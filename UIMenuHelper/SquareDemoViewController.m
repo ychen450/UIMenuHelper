@@ -188,6 +188,8 @@
 
 - (UIViewController *)selectedViewController
 {
+    
+    NSLog(@"selected view controller set");
 	if (self.selectedIndex != NSNotFound)
 		return [self.viewControllers objectAtIndex:self.selectedIndex];
 	else

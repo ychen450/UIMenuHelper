@@ -7,18 +7,17 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "SMRotaryWheel.h"
-#import "SMRotaryProtocol.h"
+#import "RotateMenu.h"
 
 @protocol RotateControllerDelegate;
 
-@interface RotateDemoViewController : UIViewController<SMRotaryProtocol> {
+@interface RotateDemoViewController : UIViewController<RotateMenuDelegate> {
     BOOL rotateup;
     UIView *contentContainerView;
 }
 
 @property (strong, nonatomic) IBOutlet UIButton *pullRotateBtn;
-@property (nonatomic, strong) SMRotaryWheel *wheel;
+@property (nonatomic, strong) RotateMenu *wheel;
 
 @property (nonatomic, copy) NSArray *viewControllers;
 @property (nonatomic, weak) UIViewController *selectedViewController;

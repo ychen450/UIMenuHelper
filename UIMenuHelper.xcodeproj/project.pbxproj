@@ -16,8 +16,6 @@
 		B20CBB7115879D9E00BA2EDA /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B20CBB6F15879D9E00BA2EDA /* MainStoryboard.storyboard */; };
 		B20CBB7415879D9E00BA2EDA /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B20CBB7315879D9E00BA2EDA /* ViewController.m */; };
 		B20CBB861587A30800BA2EDA /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B20CBB851587A30800BA2EDA /* QuartzCore.framework */; };
-		B20CBB8E1587A61900BA2EDA /* SMClove.m in Sources */ = {isa = PBXBuildFile; fileRef = B20CBB8A1587A61900BA2EDA /* SMClove.m */; };
-		B20CBB8F1587A61900BA2EDA /* SMRotaryWheel.m in Sources */ = {isa = PBXBuildFile; fileRef = B20CBB8D1587A61900BA2EDA /* SMRotaryWheel.m */; };
 		B20CBBAA1587C3D600BA2EDA /* SquareMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = B20CBBA91587C3D500BA2EDA /* SquareMenu.m */; };
 		B20CBBAE1587E46C00BA2EDA /* PieChart.m in Sources */ = {isa = PBXBuildFile; fileRef = B20CBBAD1587E46B00BA2EDA /* PieChart.m */; };
 		B25A0AE715912A6900A49B10 /* RotateDemoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B25A0AE615912A6900A49B10 /* RotateDemoViewController.m */; };
@@ -36,6 +34,7 @@
 		B2CBF8661593924400D7B879 /* Page6ViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B2CBF8641593924400D7B879 /* Page6ViewController.xib */; };
 		B2CBF86A159392D300D7B879 /* Page7ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B2CBF868159392D300D7B879 /* Page7ViewController.m */; };
 		B2CBF86B159392D300D7B879 /* Page7ViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B2CBF869159392D300D7B879 /* Page7ViewController.xib */; };
+		B2CBF86E1593C2E000D7B879 /* RotateMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = B2CBF86D1593C2E000D7B879 /* RotateMenu.m */; };
 		B2EF6ED5158A875400DD7558 /* myicon0.png in Resources */ = {isa = PBXBuildFile; fileRef = B2EF6EC7158A875400DD7558 /* myicon0.png */; };
 		B2EF6ED6158A875400DD7558 /* myicon1.png in Resources */ = {isa = PBXBuildFile; fileRef = B2EF6EC8158A875400DD7558 /* myicon1.png */; };
 		B2EF6ED7158A875400DD7558 /* myicon2.png in Resources */ = {isa = PBXBuildFile; fileRef = B2EF6EC9158A875400DD7558 /* myicon2.png */; };
@@ -71,14 +70,8 @@
 		B20CBB7215879D9E00BA2EDA /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
 		B20CBB7315879D9E00BA2EDA /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		B20CBB851587A30800BA2EDA /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
-		B20CBB891587A61900BA2EDA /* SMClove.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMClove.h; sourceTree = "<group>"; };
-		B20CBB8A1587A61900BA2EDA /* SMClove.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMClove.m; sourceTree = "<group>"; };
-		B20CBB8B1587A61900BA2EDA /* SMRotaryProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMRotaryProtocol.h; sourceTree = "<group>"; };
-		B20CBB8C1587A61900BA2EDA /* SMRotaryWheel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMRotaryWheel.h; sourceTree = "<group>"; };
-		B20CBB8D1587A61900BA2EDA /* SMRotaryWheel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMRotaryWheel.m; sourceTree = "<group>"; };
 		B20CBBA81587C3D500BA2EDA /* SquareMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SquareMenu.h; sourceTree = "<group>"; };
 		B20CBBA91587C3D500BA2EDA /* SquareMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SquareMenu.m; sourceTree = "<group>"; };
-		B20CBBAB1587C45D00BA2EDA /* SquareMenuProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SquareMenuProtocol.h; sourceTree = "<group>"; };
 		B20CBBAC1587E46B00BA2EDA /* PieChart.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PieChart.h; sourceTree = "<group>"; };
 		B20CBBAD1587E46B00BA2EDA /* PieChart.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PieChart.m; sourceTree = "<group>"; };
 		B25A0AE515912A6900A49B10 /* RotateDemoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RotateDemoViewController.h; sourceTree = "<group>"; };
@@ -106,6 +99,8 @@
 		B2CBF867159392D300D7B879 /* Page7ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Page7ViewController.h; sourceTree = "<group>"; };
 		B2CBF868159392D300D7B879 /* Page7ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Page7ViewController.m; sourceTree = "<group>"; };
 		B2CBF869159392D300D7B879 /* Page7ViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = Page7ViewController.xib; sourceTree = "<group>"; };
+		B2CBF86C1593C2DF00D7B879 /* RotateMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RotateMenu.h; sourceTree = "<group>"; };
+		B2CBF86D1593C2E000D7B879 /* RotateMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RotateMenu.m; sourceTree = "<group>"; };
 		B2EF6EC7158A875400DD7558 /* myicon0.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = myicon0.png; sourceTree = "<group>"; };
 		B2EF6EC8158A875400DD7558 /* myicon1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = myicon1.png; sourceTree = "<group>"; };
 		B2EF6EC9158A875400DD7558 /* myicon2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = myicon2.png; sourceTree = "<group>"; };
@@ -258,14 +253,10 @@
 		B27441011592C76B00EF1273 /* Menus Class */ = {
 			isa = PBXGroup;
 			children = (
-				B20CBBAB1587C45D00BA2EDA /* SquareMenuProtocol.h */,
 				B20CBBA81587C3D500BA2EDA /* SquareMenu.h */,
 				B20CBBA91587C3D500BA2EDA /* SquareMenu.m */,
-				B20CBB891587A61900BA2EDA /* SMClove.h */,
-				B20CBB8A1587A61900BA2EDA /* SMClove.m */,
-				B20CBB8B1587A61900BA2EDA /* SMRotaryProtocol.h */,
-				B20CBB8C1587A61900BA2EDA /* SMRotaryWheel.h */,
-				B20CBB8D1587A61900BA2EDA /* SMRotaryWheel.m */,
+				B2CBF86C1593C2DF00D7B879 /* RotateMenu.h */,
+				B2CBF86D1593C2E000D7B879 /* RotateMenu.m */,
 			);
 			name = "Menus Class";
 			sourceTree = "<group>";
@@ -360,8 +351,6 @@
 				B20CBB6A15879D9E00BA2EDA /* main.m in Sources */,
 				B20CBB6E15879D9E00BA2EDA /* AppDelegate.m in Sources */,
 				B20CBB7415879D9E00BA2EDA /* ViewController.m in Sources */,
-				B20CBB8E1587A61900BA2EDA /* SMClove.m in Sources */,
-				B20CBB8F1587A61900BA2EDA /* SMRotaryWheel.m in Sources */,
 				B20CBBAA1587C3D600BA2EDA /* SquareMenu.m in Sources */,
 				B20CBBAE1587E46C00BA2EDA /* PieChart.m in Sources */,
 				B25A0AE715912A6900A49B10 /* RotateDemoViewController.m in Sources */,
@@ -373,6 +362,7 @@
 				B2CBF8601593923200D7B879 /* Page5ViewController.m in Sources */,
 				B2CBF8651593924400D7B879 /* Page6ViewController.m in Sources */,
 				B2CBF86A159392D300D7B879 /* Page7ViewController.m in Sources */,
+				B2CBF86E1593C2E000D7B879 /* RotateMenu.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

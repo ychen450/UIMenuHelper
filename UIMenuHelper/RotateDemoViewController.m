@@ -45,7 +45,7 @@
     
     if (wheel == nil) {
         // Rotate menu setup
-        wheel = [[SMRotaryWheel alloc] initWithFrame:CGRectMake(0, 0 , 320, 320) 
+        wheel = [[RotateMenu alloc] initWithFrame:CGRectMake(0, 0 , 320, 320) 
                                          andDelegate:self 
                                         withSections:7];
         NSArray *icons = [NSArray arrayWithObjects:@"myicon0.png", @"myicon1.png", @"myicon2.png", @"myicon3.png", @"myicon4.png", @"myicon5.png", @"myicon6.png", nil];
@@ -85,7 +85,7 @@
 - (void) rotateDidChangeValue:(NSNumber *)newValue {
     
     [self setSelectedIndex:[newValue integerValue] animated:YES];
-    
+    NSLog(@"did changeValue");
 }
 
 

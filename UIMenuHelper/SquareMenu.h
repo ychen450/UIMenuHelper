@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "SquareMenuProtocol.h"
+
+@protocol SquareMenuProtocol;
 
 @interface SquareMenu : UIView {
     
@@ -27,5 +28,12 @@
 - (void) closedown;
 
 - (void) addNotifAt:(int)btnnum Number:(int)notnum;
+
+@end
+
+
+@protocol SquareMenuProtocol <NSObject>
+
+- (void) squareDidChangeValue:(int)btntag;
 
 @end

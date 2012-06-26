@@ -1,25 +1,25 @@
 //
-//  SMRotaryWheel.m
-//  RotaryWheelProject
+//  RotateMenu.m
+//  UIMenuHelper
 //
-//  Created by cesarerocchi on 2/10/12.
-//  Copyright (c) 2012 studiomagnolia.com. All rights reserved.
+//  Created by Yan-Ling, Chen on 6/21/12.
+//  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
+//
 
-#import "SMRotaryWheel.h"
+#import "RotateMenu.h"
 #import <QuartzCore/QuartzCore.h>
 
 #define RADIANS_TO_DEGREES(radians) ((radians) * (180.0 / M_PI))
 #define DEGREES_TO_RADIANS(angle) ((angle) / 180.0 * M_PI)
 
-
 static float deltaAngle;
 
 
-@implementation SMRotaryWheel
+@implementation RotateMenu
 
-@synthesize startTransform, container, cloves, currentValue, previousValue, delegate, wheelCenter, cloveNames, numberOfSections, images;
+@synthesize startTransform, container, currentValue, previousValue, delegate, wheelCenter, cloveNames, numberOfSections, images;
 
-              
+
 - (id) initWithFrame:(CGRect)frame andDelegate:(id)del withSections:(int)sectionsNumber {
     
     if ((self = [super initWithFrame:frame])) {
@@ -32,11 +32,11 @@ static float deltaAngle;
 
 
 - (void) initWheel {
-        
+    
     container = [[UIView alloc] initWithFrame:self.frame];
     
-    cloves = [NSMutableArray arrayWithCapacity:numberOfSections];
     images = [NSMutableArray arrayWithCapacity:numberOfSections];
+    cloveArray = [[NSMutableArray alloc] initWithCapacity:numberOfSections];
     
     // Calculate angle between each clove
     CGFloat angleSize = 2*M_PI/numberOfSections;
@@ -101,28 +101,49 @@ static float deltaAngle;
     CGFloat mid = 0;
     
     for (int i = 0; i < numberOfSections; i++) {
+    
+        NSMutableDictionary *dic = [[NSMutableDictionary alloc] initWithCapacity:4];
+        [dic setObject:[NSNumber numberWithFloat:mid] forKey:@"midValue"];
+        [dic setObject:[NSNumber numberWithFloat:(mid-fanWidth/2)] forKey:@"minValue"];
+        [dic setObject:[NSNumber numberWithFloat:(mid+fanWidth/2)] forKey:@"maxValue"];
+        [dic setObject:[NSNumber numberWithInt:i] forKey:@"value"];
         
-        SMClove *clove = [[SMClove alloc] init];
-        clove.midValue = mid;
-        clove.minValue = mid - (fanWidth/2);
-        clove.maxValue = mid + (fanWidth/2);
-        clove.value = i;
-        
-        if (clove.maxValue-fanWidth < - M_PI) {
-            
+        if (([[dic objectForKey:@"maxValue"] floatValue] -fanWidth) < -M_PI) {
             mid = 3.14;
-            clove.midValue = mid;
-            clove.minValue = fabsf(clove.maxValue);
-            
+            [dic setObject:[NSNumber numberWithFloat:mid] forKey:@"midValue"];
+            [dic setObject:[NSNumber numberWithFloat:fabsf([[dic objectForKey:@"maxValue"] floatValue])] forKey:@"minValue"];
         }
         mid -= fanWidth;
-        [cloves addObject:clove];
+        [cloveArray addObject:dic];
+    }
+}
+
+- (void) buildClovesOdd {
+    
+    CGFloat fanWidth = M_PI*2/numberOfSections;
+    CGFloat mid = 0;
+    
+    for (int i = 0; i < numberOfSections; i++) {
+        
+        NSMutableDictionary *dic = [[NSMutableDictionary alloc] initWithCapacity:4];
+        [dic setObject:[NSNumber numberWithFloat:mid] forKey:@"midValue"];
+        [dic setObject:[NSNumber numberWithFloat:(mid-fanWidth/2)] forKey:@"minValue"];
+        [dic setObject:[NSNumber numberWithFloat:(mid+fanWidth/2)] forKey:@"maxValue"];
+        [dic setObject:[NSNumber numberWithInt:i] forKey:@"value"];
+        
+        mid -= fanWidth;
+        
+        if ([[dic objectForKey:@"minValue"] floatValue] < -M_PI) {
+            mid = -mid;
+            mid -= fanWidth;
+        }
+        [cloveArray addObject:dic];
     }
 }
 
 
 - (float) calculateDistanceFromCenter:(CGPoint)point {
-
+    
     CGPoint center = CGPointMake(self.bounds.size.width/2.0f, self.bounds.size.height/2.0f);
 	float dx = point.x - center.x;
 	float dy = point.y - center.y;
@@ -130,7 +151,7 @@ static float deltaAngle;
 }
 
 -(void) touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
-
+    
     UITouch *touch = [touches anyObject];
     CGPoint delta = [touch locationInView:self];
     float dist = [self calculateDistanceFromCenter:delta];
@@ -184,7 +205,7 @@ static float deltaAngle;
 
 
 - (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
-
+    
     NSLog(@"touch ended");
     
     if (touchDo == NO) {
@@ -204,37 +225,47 @@ static float deltaAngle;
         
         float angleDif = deltaAngle - ang;
         
-        [UIView beginAnimations:nil context:NULL];
-        [UIView setAnimationDuration:0.5];
-        
         CGAffineTransform newTrans = CGAffineTransformRotate(startTransform, angleDif);
-        container.transform = newTrans;
         
-        [UIView commitAnimations];
+//        [UIView beginAnimations:nil context:NULL];
+//        [UIView setAnimationDuration:0.5];
+//        
+//        container.transform = newTrans;
+//        
+//        [UIView commitAnimations];
         
-        CGFloat radians = atan2f(container.transform.b, container.transform.a);
+        //CGFloat radians = atan2f(container.transform.b, container.transform.a);
+        CGFloat radians = atan2f(newTrans.b, newTrans.a);
         CGFloat newVal = 0.0;
         
-        for (SMClove *c in cloves) {
-            if (c.minValue > 0 && c.maxValue < 0) {
-                if (c.maxValue > radians || c.minValue < radians) {
+        
+        for (int i=0; i<[cloveArray count]; i++) {
+            
+            NSMutableDictionary *dic = [cloveArray objectAtIndex:i];
+            float max = [[dic objectForKey:@"maxValue"] floatValue];
+            float min = [[dic objectForKey:@"minValue"] floatValue];
+            
+            if (min > 0 && max < 0) {
+                if (max > radians || min < radians) {
                     if (radians > 0) {
                         newVal = radians - M_PI;
                     } else {
-                        newVal = M_PI + radians;                    
+                        newVal = M_PI + radians;
                     }
-                    currentValue = c.value;
+                    currentValue = [[dic objectForKey:@"value"] intValue];
                 }
             }
-            if (radians > c.minValue && radians < c.maxValue) {
-                newVal = radians - c.midValue;
-                currentValue = c.value;
+            if (radians > min && radians < max) {
+                newVal = radians - [[dic objectForKey:@"midValue"] floatValue];
+                currentValue = [[dic objectForKey:@"value"] intValue];
             }
         }
         [UIView beginAnimations:nil context:NULL];
-        [UIView setAnimationDuration:0.2];
+        [UIView setAnimationDuration:0.6];
         
-        CGAffineTransform t = CGAffineTransformRotate(container.transform, -newVal);
+        CGAffineTransform t = CGAffineTransformRotate(startTransform, angleDif-newVal);
+        
+        //CGAffineTransform t = CGAffineTransformRotate(container.transform, -newVal);
         container.transform = t;
         
         [UIView commitAnimations];
@@ -244,29 +275,33 @@ static float deltaAngle;
         
         [self.delegate rotateDidChangeValue:[NSNumber numberWithInt:currentValue]];
         previousValue = currentValue;
-
+        
         return;
     }
     
     CGFloat radians = atan2f(container.transform.b, container.transform.a);
     CGFloat newVal = 0.0;
     
-    for (SMClove *c in cloves) {
-        if (c.minValue > 0 && c.maxValue < 0) {
-            if (c.maxValue > radians || c.minValue < radians) {
+    for (NSMutableDictionary *dic in cloveArray) {
+        float max = [[dic objectForKey:@"maxValue"] floatValue];
+        float min = [[dic objectForKey:@"minValue"] floatValue];
+        
+        if (min > 0 && max < 0) {
+            if (max > radians || min < radians) {
                 if (radians > 0) {
                     newVal = radians - M_PI;
                 } else {
-                    newVal = M_PI + radians;                    
+                    newVal = M_PI + radians;
                 }
-                currentValue = c.value;
+                currentValue = [[dic objectForKey:@"value"] intValue];
             }
         }
-        if (radians > c.minValue && radians < c.maxValue) {
-            newVal = radians - c.midValue;
-            currentValue = c.value;
+        if (radians > min && radians < max) {
+            newVal = radians - [[dic objectForKey:@"midValue"] floatValue];
+            currentValue = [[dic objectForKey:@"value"] intValue];
         }
     }
+    
     [UIView beginAnimations:nil context:NULL];
     [UIView setAnimationDuration:0.2];
     
@@ -282,29 +317,8 @@ static float deltaAngle;
     previousValue = currentValue;
 }
 
-- (void) buildClovesOdd {
-    
-    CGFloat fanWidth = M_PI*2/numberOfSections;
-    CGFloat mid = 0;
-    
-    for (int i = 0; i < numberOfSections; i++) {
-        
-        SMClove *clove = [[SMClove alloc] init];
-        clove.midValue = mid;
-        clove.minValue = mid - (fanWidth/2);
-        clove.maxValue = mid + (fanWidth/2);
-        clove.value = i;
-        
-        mid -= fanWidth;
-        
-        if (clove.minValue < - M_PI) { // odd sections
-            
-            mid = -mid;
-            mid -= fanWidth; 
-            
-        }
-        [cloves addObject:clove];
-    }
-}
+
+
 
 @end
+

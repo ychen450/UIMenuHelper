@@ -8,7 +8,6 @@
 
 #import <UIKit/UIKit.h>
 #import "SquareMenu.h"
-#import "SquareMenuProtocol.h"
 
 @interface SquareDemoViewController : UIViewController<SquareMenuProtocol> {
     

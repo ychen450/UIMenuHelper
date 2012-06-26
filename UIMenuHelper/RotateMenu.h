@@ -1,15 +1,17 @@
 //
-//  SMRotaryWheel.m
-//  RotaryWheelProject
+//  RotateMenu.h
+//  UIMenuHelper
 //
-//  Created by cesarerocchi on 2/10/12.
-//  Copyright (c) 2012 studiomagnolia.com. All rights reserved.
+//  Created by Yan-Ling, Chen on 6/21/12.
+//  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
+//
 
 #import <UIKit/UIKit.h>
-#import "SMRotaryProtocol.h"
-#import "SMClove.h"
 
-@interface SMRotaryWheel : UIView {
+@protocol RotateMenuDelegate;
+
+@interface RotateMenu : UIView {
+    
     BOOL touchDo;
     int touchNum;
     
@@ -18,11 +20,12 @@
     NSArray *iconsFile;
     UIImage *sectorImage;
     UIImage *selectSectorImage;
+    
+    NSMutableArray *cloveArray;
 }
 
-@property (weak) id <SMRotaryProtocol> delegate;
+@property (weak) id <RotateMenuDelegate> delegate;
 @property (nonatomic, strong) UIView *container;
-@property (nonatomic, strong) NSMutableArray *cloves;
 @property (nonatomic, strong) NSMutableArray *images;
 @property CGAffineTransform startTransform;
 @property int currentValue;
@@ -37,5 +40,13 @@
 - (void) buildClovesOdd;
 - (float) calculateDistanceFromCenter:(CGPoint)point;
 - (void) setImageFiles:(NSArray*)icons background:(NSString*)bg center:(NSString*)cen sector:(NSString*)sec1 sectorSel:(NSString*)sec2;
+
+@end
+
+
+
+@protocol RotateMenuDelegate <NSObject>
+
+- (void) rotateDidChangeValue:(NSNumber *)newValue;
 
 @end

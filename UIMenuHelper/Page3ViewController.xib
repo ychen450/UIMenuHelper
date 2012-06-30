@@ -39,7 +39,7 @@
 					<object class="IBUIImageView" id="58796568">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{69, 73}, {182, 98}}</string>
+						<string key="NSFrame">{{102, 44}, {140, 140}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
 						<bool key="IBUIUserInteractionEnabled">NO</bool>
@@ -52,7 +52,7 @@
 					<object class="IBUIImageView" id="836348393">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{104, 165}, {128, 66}}</string>
+						<string key="NSFrame">{{131, 144}, {95, 93}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
 						<bool key="IBUIUserInteractionEnabled">NO</bool>
@@ -62,7 +62,7 @@
 					<object class="IBUIImageView" id="755110926">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{131, 232}, {82, 46}}</string>
+						<string key="NSFrame">{{150, 212}, {67, 65}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
 						<bool key="IBUIUserInteractionEnabled">NO</bool>
@@ -213,7 +213,7 @@
 		<int key="IBDocument.defaultPropertyAccessControl">3</int>
 		<object class="NSMutableDictionary" key="IBDocument.LastKnownImageSizes">
 			<string key="NS.key.0">myicon2.png</string>
-			<string key="NS.object.0">{130, 70}</string>
+			<string key="NS.object.0">{85, 85}</string>
 		</object>
 		<string key="IBCocoaTouchPluginVersion">933</string>
 	</data>

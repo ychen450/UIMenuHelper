@@ -36,29 +36,29 @@
 				<reference key="NSNextResponder"/>
 				<int key="NSvFlags">274</int>
 				<array class="NSMutableArray" key="NSSubviews">
-					<object class="IBUIImageView" id="17577609">
-						<reference key="NSNextResponder" ref="191373211"/>
-						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{43, 80}, {182, 98}}</string>
-						<reference key="NSSuperview" ref="191373211"/>
-						<reference key="NSWindow"/>
-						<bool key="IBUIUserInteractionEnabled">NO</bool>
-						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-						<object class="NSCustomResource" key="IBUIImage" id="425504703">
-							<string key="NSClassName">NSImage</string>
-							<string key="NSResourceName">myicon4.png</string>
-						</object>
-					</object>
 					<object class="IBUIImageView" id="412891437">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{32, -39}, {375, 233}}</string>
+						<string key="NSFrame">{{32, -61}, {375, 325}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
 						<float key="IBUIAlpha">0.5</float>
 						<bool key="IBUIUserInteractionEnabled">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-						<reference key="IBUIImage" ref="425504703"/>
+						<object class="NSCustomResource" key="IBUIImage" id="271476692">
+							<string key="NSClassName">NSImage</string>
+							<string key="NSResourceName">myicon4.png</string>
+						</object>
+					</object>
+					<object class="IBUIImageView" id="17577609">
+						<reference key="NSNextResponder" ref="191373211"/>
+						<int key="NSvFlags">292</int>
+						<string key="NSFrame">{{48, 73}, {136, 116}}</string>
+						<reference key="NSSuperview" ref="191373211"/>
+						<reference key="NSWindow"/>
+						<bool key="IBUIUserInteractionEnabled">NO</bool>
+						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
+						<reference key="IBUIImage" ref="271476692"/>
 					</object>
 					<object class="IBUILabel" id="643355547">
 						<reference key="NSNextResponder" ref="191373211"/>
@@ -197,7 +197,7 @@
 		<int key="IBDocument.defaultPropertyAccessControl">3</int>
 		<object class="NSMutableDictionary" key="IBDocument.LastKnownImageSizes">
 			<string key="NS.key.0">myicon4.png</string>
-			<string key="NS.object.0">{130, 70}</string>
+			<string key="NS.object.0">{85, 85}</string>
 		</object>
 		<string key="IBCocoaTouchPluginVersion">933</string>
 	</data>

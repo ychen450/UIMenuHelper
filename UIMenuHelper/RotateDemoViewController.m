@@ -18,6 +18,7 @@
 @synthesize selectedIndex = _selectedIndex;
 @synthesize delegate = _delegate;
 @synthesize selectedViewController = _selectedViewController;
+@synthesize rotateMode = _rotateMode;
 
 - (void)viewDidLoad {
     
@@ -31,16 +32,43 @@
     toViewController.view.frame = contentContainerView.bounds;
     [contentContainerView addSubview:toViewController.view];
     
-    wheel = [[RotateMenu alloc] initWithFrame:CGRectMake(0, 0 , 320, 320) 
-                                  andDelegate:self 
-                                 withSections:7];
-    NSArray *icons = [NSArray arrayWithObjects:@"myicon0.png", @"myicon1.png", @"myicon2.png", @"myicon3.png", @"myicon4.png", @"myicon5.png", @"myicon6.png", nil];
-    [wheel setImageFiles:icons background:@"myrotbg.png" center:@"myrotcenter.png" sector:@"myrotsec.png" sectorSel:@"myrotsec2.png"];
-    wheel.rotateEnable = NO;
-    wheel.iconFaceDown = NO;
-    wheel.center = CGPointMake(160, 256);
-    wheel.frame = CGRectMake(0, 428, 320, 320);
-    [self.view addSubview:wheel];
+    if (_rotateMode==0) {
+        wheel = [[RotateMenu alloc] initWithFrame:CGRectMake(0, 0 , 320, 320) 
+                                      andDelegate:self 
+                                     withSections:7
+                                     iconFaceDown:YES];
+        NSArray *icons = [NSArray arrayWithObjects:@"myicon0.png", @"myicon1.png", @"myicon2.png", @"myicon3.png", @"myicon4.png", @"myicon5.png", @"myicon6.png", nil];
+        [wheel setImageFiles:icons  downBtn:@"myrotbtn1.png" upBtn:@"myrotbtn2.png" background:@"myrotbg.png" center:@"myrotcenter.png" sector:@"myrotsec.png" sectorSel:@"myrotsec2.png"];
+        wheel.rotateEnable = NO;
+        wheel.moveEnable = NO;
+        wheel.center = CGPointMake(160, 256);
+        wheel.frame = CGRectMake(0, 428, 320, 320);
+        [self.view addSubview:wheel];
+    } else if (_rotateMode==1) {
+        wheel = [[RotateMenu alloc] initWithFrame:CGRectMake(0, 0 , 320, 320) 
+                                      andDelegate:self 
+                                     withSections:7
+                                     iconFaceDown:YES];
+        NSArray *icons = [NSArray arrayWithObjects:@"myicon0.png", @"myicon1.png", @"myicon2.png", @"myicon3.png", @"myicon4.png", @"myicon5.png", @"myicon6.png", nil];
+        [wheel setImageFiles:icons  downBtn:@"myrotbtn1.png" upBtn:@"myrotbtn2.png" background:@"myrotbg.png" center:@"myrotcenter.png" sector:@"myrotsec.png" sectorSel:@"myrotsec2.png"];
+        wheel.rotateEnable = NO;
+        wheel.center = CGPointMake(160, 256);
+        wheel.frame = CGRectMake(0, 428, 320, 320);
+        [self.view addSubview:wheel];
+        
+    } else if (_rotateMode==2) {
+        wheel = [[RotateMenu alloc] initWithFrame:CGRectMake(0, 0 , 320, 320) 
+                                      andDelegate:self 
+                                     withSections:7
+                                     iconFaceDown:NO];
+        NSArray *icons = [NSArray arrayWithObjects:@"myicon0.png", @"myicon1.png", @"myicon2.png", @"myicon3.png", @"myicon4.png", @"myicon5.png", @"myicon6.png", nil];
+        [wheel setImageFiles:icons  downBtn:@"myrotbtn1.png" upBtn:@"myrotbtn2.png" background:@"myrotbg.png" center:@"myrotcenter.png" sector:@"myrotsec.png" sectorSel:@"myrotsec2.png"];
+        wheel.rotateEnable = YES;
+        wheel.center = CGPointMake(160, 256);
+        wheel.frame = CGRectMake(0, 428, 320, 320);
+        [self.view addSubview:wheel];
+    }
+    
 }
 
 
@@ -114,12 +142,9 @@
 {
 	NSAssert(newSelectedIndex < [self.viewControllers count], @"View controller index out of bounds");
     
-    NSLog(@"set selected index");
-    
 	if (![self isViewLoaded])
 	{
         NSLog(@"not view loaded");
-        
 		_selectedIndex = newSelectedIndex;
 	}
 	else if (_selectedIndex != newSelectedIndex)
@@ -166,8 +191,6 @@
                  toViewController.view.frame = contentContainerView.bounds;
              }
                                     completion:nil];
-            
-            NSLog(@"select view animated");
 		}
 	}
 }

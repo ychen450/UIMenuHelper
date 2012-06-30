@@ -24,11 +24,11 @@
 @property (nonatomic, weak) UIViewController *selectedViewController;
 @property (nonatomic, assign) NSUInteger selectedIndex;
 @property (nonatomic, weak) id <RotateControllerDelegate> delegate;
+@property (nonatomic, assign) NSInteger rotateMode;
 
 - (void)setSelectedIndex:(NSUInteger)index animated:(BOOL)animated;
 - (void)setSelectedViewController:(UIViewController *)viewController animated:(BOOL)animated;
 
-- (IBAction)pullRotate:(id)sender;
 - (IBAction)backToMenu:(id)sender; 
 
 @end

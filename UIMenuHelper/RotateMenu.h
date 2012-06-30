@@ -22,6 +22,8 @@
     NSArray *iconsFile;
     UIImage *sectorImage;
     UIImage *selectSectorImage;
+    UIImage *upBtnImage;
+    UIImage *downBtnImage;
     
     NSMutableArray *cloveArray;
     NSMutableArray *icons;
@@ -35,17 +37,18 @@
 @property int currentValue;
 @property int previousValue;
 @property int numberOfSections;
+@property BOOL moveEnable;
 @property BOOL rotateEnable;
 @property BOOL iconFaceDown;
 @property CGPoint wheelCenter;
 @property (nonatomic, strong) NSMutableDictionary *cloveNames;
 
-- (id) initWithFrame:(CGRect)frame andDelegate:(id)del withSections:(int)sectionsNumber;
+- (id) initWithFrame:(CGRect)frame andDelegate:(id)del withSections:(int)sectionsNumber iconFaceDown:(BOOL)ifd;
 - (void) initWheel;
 - (void) buildClovesEven;
 - (void) buildClovesOdd;
 - (float) calculateDistanceFromCenter:(CGPoint)point;
-- (void) setImageFiles:(NSArray*)icons background:(NSString*)bg center:(NSString*)cen sector:(NSString*)sec1 sectorSel:(NSString*)sec2;
+- (void) setImageFiles:(NSArray*)icons downBtn:(NSString*)down upBtn:(NSString*)up background:(NSString*)bg center:(NSString*)cen sector:(NSString*)sec1 sectorSel:(NSString*)sec2;
 
 - (IBAction)ClickRotateBtn:(id)sender;
 

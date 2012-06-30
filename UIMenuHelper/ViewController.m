@@ -130,13 +130,27 @@
     Page6ViewController *page6ViewController = [[Page6ViewController alloc] initWithNibName:@"Page6ViewController" bundle:nil];
     Page7ViewController *page7ViewController = [[Page7ViewController alloc] initWithNibName:@"Page7ViewController" bundle:nil];
     
-    if ([[segue identifier] isEqualToString:@"GoRotate"]) {
+    if ([[segue identifier] isEqualToString:@"GoRotate0"]) {
         
         RotateDemoViewController *rotateDemoViewController = [segue destinationViewController];
         rotateDemoViewController.delegate = self;
         NSArray *viewControllers = [NSArray arrayWithObjects:page1ViewController, page2ViewController, page3ViewController, page4ViewController, page5ViewController, page6ViewController, page7ViewController, nil];
         rotateDemoViewController.viewControllers = viewControllers;
+        rotateDemoViewController.rotateMode = 0;
+    } else if ([[segue identifier] isEqualToString:@"GoRotate1"]) {
         
+        RotateDemoViewController *rotateDemoViewController = [segue destinationViewController];
+        rotateDemoViewController.delegate = self;
+        NSArray *viewControllers = [NSArray arrayWithObjects:page1ViewController, page2ViewController, page3ViewController, page4ViewController, page5ViewController, page6ViewController, page7ViewController, nil];
+        rotateDemoViewController.viewControllers = viewControllers;
+        rotateDemoViewController.rotateMode = 1;
+    } else if ([[segue identifier] isEqualToString:@"GoRotate2"]) {
+        
+        RotateDemoViewController *rotateDemoViewController = [segue destinationViewController];
+        rotateDemoViewController.delegate = self;
+        NSArray *viewControllers = [NSArray arrayWithObjects:page1ViewController, page2ViewController, page3ViewController, page4ViewController, page5ViewController, page6ViewController, page7ViewController, nil];
+        rotateDemoViewController.viewControllers = viewControllers;
+        rotateDemoViewController.rotateMode = 2;
     } else if ([[segue identifier] isEqualToString:@"GoSquare"]) {
         
         SquareDemoViewController *squareDemoViewController = [segue destinationViewController];

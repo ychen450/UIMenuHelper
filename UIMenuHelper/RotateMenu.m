@@ -18,15 +18,16 @@ static float deltaAngle;
 
 @implementation RotateMenu
 
-@synthesize startTransform, container, currentValue, previousValue, delegate, wheelCenter, cloveNames, numberOfSections, images, rotateEnable, iconFaceDown;
+@synthesize startTransform, container, currentValue, previousValue, delegate, wheelCenter, cloveNames, numberOfSections, images, rotateEnable, iconFaceDown, moveEnable;
 
 
-- (id) initWithFrame:(CGRect)frame andDelegate:(id)del withSections:(int)sectionsNumber {
+- (id) initWithFrame:(CGRect)frame andDelegate:(id)del withSections:(int)sectionsNumber iconFaceDown:(BOOL)ifd{
     
     if ((self = [super initWithFrame:frame])) {
 		
         self.numberOfSections = sectionsNumber;
         self.delegate = del;
+        self.iconFaceDown = ifd;
 	}
     return self;
 }
@@ -36,7 +37,7 @@ static float deltaAngle;
     
     //self.center = CGPointMake(160, 256);
     rotateEnable = YES;
-    iconFaceDown = NO;
+    moveEnable = YES;
     container = [[UIView alloc] initWithFrame:self.frame];
     
     images = [NSMutableArray arrayWithCapacity:numberOfSections];
@@ -89,7 +90,7 @@ static float deltaAngle;
     rotateup = NO;
     UIButton *rotateBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     rotateBtn.frame = CGRectMake(0, 0, 320, 32);
-    [rotateBtn setBackgroundImage:[UIImage imageNamed:@"myrotbtn1.png"] forState:UIControlStateNormal];
+    [rotateBtn setBackgroundImage:downBtnImage forState:UIControlStateNormal];
     [rotateBtn addTarget:self action:@selector(ClickRotateBtn:) forControlEvents:UIControlEventTouchUpInside];
     [self addSubview:rotateBtn];
     
@@ -101,13 +102,15 @@ static float deltaAngle;
     [self.delegate rotateDidChangeValue:[NSNumber numberWithInt:0]];
 }
 
-- (void) setImageFiles:(NSArray*)icons background:(NSString*)bg center:(NSString*)cen sector:(NSString*)sec1 sectorSel:(NSString*)sec2 {
+- (void) setImageFiles:(NSArray*)icons downBtn:(NSString*)down upBtn:(NSString*)up background:(NSString*)bg center:(NSString*)cen sector:(NSString*)sec1 sectorSel:(NSString*)sec2 {
     
     iconsFile = [NSArray arrayWithArray:icons];
     bgImage = [UIImage imageNamed:bg];
     centerImage = [UIImage imageNamed:cen];
     sectorImage = [UIImage imageNamed:sec1];
     selectSectorImage = [UIImage imageNamed:sec2];
+    upBtnImage = [UIImage imageNamed:up];
+    downBtnImage = [UIImage imageNamed:down];
     
     [self initWheel];
 }
@@ -122,16 +125,17 @@ static float deltaAngle;
                              btn.frame = CGRectMake(0, 0, 320, 32);
                          }
                          completion:nil];
-        [btn setImage:[UIImage imageNamed:@"myrotbtn2.png"] forState:UIControlStateNormal];
+        [btn setImage:upBtnImage forState:UIControlStateNormal];
         rotateup = YES;
     } else {
         [UIView animateWithDuration:0.6 delay:0.0 options:UIViewAnimationCurveEaseInOut
                          animations:^{
                              self.frame = CGRectMake(0, 428, 320, 320);
-                             btn.frame = CGRectMake(0, 288, 320, 32);
+                             btn.frame = CGRectMake(0, 0, 320, 32);
                          }
                          completion:nil];
-        [btn setImage:[UIImage imageNamed:@"myrotbtn1.png"] forState:UIControlStateNormal];
+        //[self bringSubviewToFront:btn];
+        [btn setImage:downBtnImage forState:UIControlStateNormal];
         rotateup = NO;
     }
 
@@ -271,6 +275,7 @@ static float deltaAngle;
     }
     if (touchNum==1) {
         NSLog(@"single touch");
+        
         UITouch *touch = [touches anyObject];
         CGPoint pt = [touch locationInView:self];
         
@@ -309,20 +314,22 @@ static float deltaAngle;
                 currentValue = [[dic objectForKey:@"value"] intValue];
             }
         }
-        [UIView beginAnimations:nil context:NULL];
-        [UIView setAnimationDuration:0.6];
         
-        CGAffineTransform t = CGAffineTransformRotate(startTransform, angleDif-newVal);
-        container.transform = t;
-        
-        if (iconFaceDown) {
-            for (UIImageView *iconiv in icons) {
-                CGAffineTransform at = [[iconTransform objectAtIndex:iconiv.tag] CGAffineTransformValue];
-                iconiv.transform = CGAffineTransformRotate(at, newVal-angleDif);
+        if (moveEnable) {
+            [UIView beginAnimations:nil context:NULL];
+            [UIView setAnimationDuration:0.6];
+            
+            CGAffineTransform t = CGAffineTransformRotate(startTransform, angleDif-newVal);
+            container.transform = t;
+            
+            if (iconFaceDown) {
+                for (UIImageView *iconiv in icons) {
+                    CGAffineTransform at = [[iconTransform objectAtIndex:iconiv.tag] CGAffineTransformValue];
+                    iconiv.transform = CGAffineTransformRotate(at, newVal-angleDif);
+                }
             }
+            [UIView commitAnimations];
         }
-        [UIView commitAnimations];
-        
         UIImageView *iv = [images objectAtIndex:currentValue];
         iv.image = selectSectorImage;
         

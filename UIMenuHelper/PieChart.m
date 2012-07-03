@@ -61,12 +61,12 @@
 	}
     
     CGContextSetFillColorWithColor(c, [UIColor whiteColor].CGColor);
-    CGContextFillEllipseInRect(c, CGRectMake(15, 15, 70, 70));
+    CGContextFillEllipseInRect(c, CGRectMake(10, 10, 40, 40));
     
-    UILabel *lbNumber = [[UILabel alloc] initWithFrame:CGRectMake(15, 15, 70, 70)];
+    UILabel *lbNumber = [[UILabel alloc] initWithFrame:CGRectMake(10, 10, 40, 40)];
     lbNumber.backgroundColor = [UIColor clearColor];
     lbNumber.textAlignment = UITextAlignmentCenter;
-    lbNumber.font = [UIFont systemFontOfSize:22];
+    lbNumber.font = [UIFont systemFontOfSize:12];
     lbNumber.text = [NSString stringWithFormat:@"%d",220];
     [self addSubview:lbNumber];
 }

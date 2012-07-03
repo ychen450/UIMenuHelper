@@ -31,7 +31,7 @@
 - (void) setImageFiles:(NSArray*)icons background:(NSString*)bg;
 - (IBAction)selectSquare:(id)sender;
 
-- (void) slideup;
+- (void) slideup:(float)time;
 - (void) closedown;
 
 - (void) addNotifAt:(int)btnnum Number:(int)notnum;

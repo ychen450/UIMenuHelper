@@ -13,7 +13,7 @@
 @interface SquareDemoViewController : UIViewController<SquareMenuProtocol> {
     
     BOOL squareup;
-    BOOL squareDownEnable;
+    BOOL squareStatic;
     
     UIView *contentContainerView;
 }
@@ -25,6 +25,5 @@
 @property (nonatomic, assign) NSUInteger selectedIndex;
 
 - (void)setSelectedIndex:(NSUInteger)index animated:(BOOL)animated;
-- (void)setSelectedViewController:(UIViewController *)viewController animated:(BOOL)animated;
 
 @end

@@ -68,11 +68,11 @@
     [self.delegate squareDidChangeValue:btn.tag];
 }
 
-- (void) slideup {
+- (void) slideup:(float)time {
     NSLog(@"slideup ");
     [self addSubview:container];
     self.frame = CGRectMake(0, 480, self.frame.size.width , self.frame.size.height);
-    [UIView animateWithDuration:0.6 delay:0.0 options:UIViewAnimationCurveEaseInOut
+    [UIView animateWithDuration:time delay:0.0 options:UIViewAnimationCurveEaseInOut
                      animations:^{
                          self.frame = CGRectMake(0, 416-self.frame.size.height, self.frame.size.width , self.frame.size.height);
                      }
@@ -112,8 +112,8 @@
 }
 
 - (void) addSpecialView:(UIView*)view btnNumber:(int)btnnum {
-    
-    
+    UIButton *btn = [btnArray objectAtIndex:btnnum];
+    [btn addSubview:view];
 }
 
 

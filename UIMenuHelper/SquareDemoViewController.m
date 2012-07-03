@@ -15,6 +15,8 @@
 #import "Page4ViewController.h"
 #import "Page5ViewController.h"
 
+#import "PieChart.h"
+
 @implementation SquareDemoViewController
 
 @synthesize square;
@@ -24,20 +26,15 @@
 @synthesize selectedViewController = _selectedViewController;
 
 - (IBAction)swipeUpDetected:(UISwipeGestureRecognizer *)sender {
-    
     if (squareup == NO) {
         [self.view addSubview:square];
-        [square slideup];
-        
-        if (squareDownEnable) {
-            squareup = YES;
-        }
+        [square slideup:0.6];
+        squareup = YES;
     } else {
         [square closedown];
         squareup = NO;
     }
 }
-
 - (IBAction)swipeDownDetected:(UISwipeGestureRecognizer *)sender {
     if (squareup == YES) {
         [square closedown];
@@ -59,18 +56,17 @@
         [square setEnable:NO btnNumber:1];
     }
     // set enable square menu closing or not
-    squareDownEnable = NO;
+    squareStatic = YES;
     // add notification showing 4 at button 3
     [square addNotifAt:3 Number:4];
     
-    // swipe gesture to control square menu
-    UISwipeGestureRecognizer *swipeUpRecognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(swipeUpDetected:)];
-    swipeUpRecognizer.direction = UISwipeGestureRecognizerDirectionUp;
-    [self.view addGestureRecognizer:swipeUpRecognizer];
-    UISwipeGestureRecognizer *swipeDownRecognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(swipeDownDetected:)];
-    swipeDownRecognizer.direction = UISwipeGestureRecognizerDirectionDown;
-    [self.view addGestureRecognizer:swipeDownRecognizer];
-    squareup = NO;
+    // add special view to btn 1
+    PieChart *piechart = [[PieChart alloc] initWithFrame:CGRectMake(0, 0, square.frame.size.width/3, square.frame.size.height/2)];
+    piechart.pievalue = 0.3;
+    piechart.color1 = [UIColor redColor];
+    piechart.color2 = [UIColor yellowColor];
+    piechart.midtext = @"220";
+    [square addSpecialView:piechart btnNumber:1];
     
     contentContainerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 416)];
 	[self.view addSubview:contentContainerView];
@@ -80,16 +76,26 @@
     Page3ViewController *page3ViewController = [[Page3ViewController alloc] initWithNibName:@"Page3ViewController" bundle:nil];
     Page4ViewController *page4ViewController = [[Page4ViewController alloc] initWithNibName:@"Page4ViewController" bundle:nil];
     _viewControllers = [NSArray arrayWithObjects:page1ViewController, page3ViewController, page4ViewController, nil];
-
-	// Add the new child view controllers.
 	for (UIViewController *viewController in _viewControllers) {
 		[self addChildViewController:viewController];
 		[viewController didMoveToParentViewController:self];
-        NSLog(@"add child view controller  %@",viewController);
 	}
-    
     [self squareDidChangeValue:0];
     _selectedIndex = 0;
+    
+    // swipe gesture to control square menu
+    if (!squareStatic) {
+        UISwipeGestureRecognizer *swipeUpRecognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(swipeUpDetected:)];
+        swipeUpRecognizer.direction = UISwipeGestureRecognizerDirectionUp;
+        [self.view addGestureRecognizer:swipeUpRecognizer];
+        UISwipeGestureRecognizer *swipeDownRecognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(swipeDownDetected:)];
+        swipeDownRecognizer.direction = UISwipeGestureRecognizerDirectionDown;
+        [self.view addGestureRecognizer:swipeDownRecognizer];
+        squareup = NO;
+    } else {
+        [self.view addSubview:square];
+        [square slideup:0.0];
+    }
 }
 
 - (void) squareDidChangeValue:(int)btntag {

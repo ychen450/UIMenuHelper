@@ -48,7 +48,7 @@
 - (void) buildClovesEven;
 - (void) buildClovesOdd;
 - (float) calculateDistanceFromCenter:(CGPoint)point;
-- (void) setImageFiles:(NSArray*)icons downBtn:(NSString*)down upBtn:(NSString*)up background:(NSString*)bg center:(NSString*)cen sector:(NSString*)sec1 sectorSel:(NSString*)sec2;
+- (void) setImageFiles:(NSArray*)iconsImage downBtn:(NSString*)down upBtn:(NSString*)up background:(NSString*)bg center:(NSString*)cen sector:(NSString*)sec1 sectorSel:(NSString*)sec2;
 
 - (IBAction)ClickRotateBtn:(id)sender;
 

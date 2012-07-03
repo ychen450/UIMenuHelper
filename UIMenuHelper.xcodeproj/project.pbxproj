@@ -50,8 +50,6 @@
 		B2EF6EED158A8BAC00DD7558 /* myrotsec2.png in Resources */ = {isa = PBXBuildFile; fileRef = B2EF6EEC158A8BAC00DD7558 /* myrotsec2.png */; };
 		B2EF6EF3158A8FD200DD7558 /* myrotbtn2.png in Resources */ = {isa = PBXBuildFile; fileRef = B2EF6EF2158A8FD200DD7558 /* myrotbtn2.png */; };
 		B2EF6EF7158A95C700DD7558 /* mysqabg.png in Resources */ = {isa = PBXBuildFile; fileRef = B2EF6EF6158A95C700DD7558 /* mysqabg.png */; };
-		B2EF6EFA158A990C00DD7558 /* mysqab1.png in Resources */ = {isa = PBXBuildFile; fileRef = B2EF6EF8158A990C00DD7558 /* mysqab1.png */; };
-		B2EF6EFB158A990C00DD7558 /* mysqab2.png in Resources */ = {isa = PBXBuildFile; fileRef = B2EF6EF9158A990C00DD7558 /* mysqab2.png */; };
 		B2EF6EFD158A991500DD7558 /* mysqabg1.png in Resources */ = {isa = PBXBuildFile; fileRef = B2EF6EFC158A991500DD7558 /* mysqabg1.png */; };
 /* End PBXBuildFile section */
 
@@ -116,8 +114,6 @@
 		B2EF6EEC158A8BAC00DD7558 /* myrotsec2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = myrotsec2.png; sourceTree = "<group>"; };
 		B2EF6EF2158A8FD200DD7558 /* myrotbtn2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = myrotbtn2.png; sourceTree = "<group>"; };
 		B2EF6EF6158A95C700DD7558 /* mysqabg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mysqabg.png; sourceTree = "<group>"; };
-		B2EF6EF8158A990C00DD7558 /* mysqab1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mysqab1.png; sourceTree = "<group>"; };
-		B2EF6EF9158A990C00DD7558 /* mysqab2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mysqab2.png; sourceTree = "<group>"; };
 		B2EF6EFC158A991500DD7558 /* mysqabg1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mysqabg1.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -215,8 +211,6 @@
 				B2EF6ED3158A875400DD7558 /* myrotsec.png */,
 				B2EF6EEC158A8BAC00DD7558 /* myrotsec2.png */,
 				B2EF6EF6158A95C700DD7558 /* mysqabg.png */,
-				B2EF6EF8158A990C00DD7558 /* mysqab1.png */,
-				B2EF6EF9158A990C00DD7558 /* mysqab2.png */,
 				B2EF6EFC158A991500DD7558 /* mysqabg1.png */,
 			);
 			name = Images;
@@ -321,8 +315,6 @@
 				B2EF6EED158A8BAC00DD7558 /* myrotsec2.png in Resources */,
 				B2EF6EF3158A8FD200DD7558 /* myrotbtn2.png in Resources */,
 				B2EF6EF7158A95C700DD7558 /* mysqabg.png in Resources */,
-				B2EF6EFA158A990C00DD7558 /* mysqab1.png in Resources */,
-				B2EF6EFB158A990C00DD7558 /* mysqab2.png in Resources */,
 				B2EF6EFD158A991500DD7558 /* mysqabg1.png in Resources */,
 				B27440F91592C6E900EF1273 /* Page2ViewController.xib in Resources */,
 				B27440FE1592C70900EF1273 /* Page1ViewController.xib in Resources */,

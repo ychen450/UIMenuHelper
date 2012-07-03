@@ -20,19 +20,25 @@
 		
         self.numberOfSections = sectionsNumber;
         self.delegate = del;
-		[self initSquare];
-        
 	}
     return self;
 }
 
+
+- (void) setImageFiles:(NSArray*)icons background:(NSString*)bg {
+    
+    bgImage = [UIImage imageNamed:bg];
+    iconsFile = icons;
+    
+    [self initSquare];
+}
 
 - (void) initSquare {
     
     container = [[UIView alloc] initWithFrame:self.frame];
     
     UIImageView *im = [[UIImageView alloc] initWithFrame:self.frame];
-    im.image = [UIImage imageNamed:@"mysqabg.png"];
+    im.image = bgImage;
     [self addSubview:im];
     
     NSMutableArray *tempbtnarray = [[NSMutableArray alloc] init];
@@ -40,11 +46,11 @@
         
         UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
         if (i<numberOfSections/2) {
-            btn.frame = CGRectMake(i*2*self.frame.size.width/numberOfSections, 0, 2*self.frame.size.width/numberOfSections, self.frame.size.height/2-20);
+            btn.frame = CGRectMake(i*2*self.frame.size.width/numberOfSections, 0, self.frame.size.height/2, self.frame.size.height/2);
         } else {
-            btn.frame = CGRectMake((i-numberOfSections/2)*2*self.frame.size.width/numberOfSections , self.frame.size.height/2 , 2*self.frame.size.width/numberOfSections, self.frame.size.height/2-20);
+            btn.frame = CGRectMake((i-numberOfSections/2)*2*self.frame.size.width/numberOfSections , self.frame.size.height/2 , self.frame.size.height/2, self.frame.size.height/2);
         }
-        [btn setBackgroundImage:[UIImage imageNamed:[NSString stringWithFormat:@"myicon%i.png", i]] forState:UIControlStateNormal];
+        [btn setBackgroundImage:[UIImage imageNamed:[iconsFile objectAtIndex:i]] forState:UIControlStateNormal];
         btn.tag = i;
         [btn addTarget:self action:@selector(selectSquare:) forControlEvents:UIControlEventTouchUpInside];
         [container addSubview:btn];
@@ -52,7 +58,7 @@
     }
     btnArray = [NSArray arrayWithArray:tempbtnarray];
     
-    //[self.delegate squareDidChangeValue:0];
+    [self.delegate squareDidChangeValue:0];
 }
 
 - (IBAction)selectSquare:(id)sender {
@@ -99,6 +105,18 @@
     
     [btn addSubview:im];
 }
+
+- (void) setEnable:(BOOL)enabled btnNumber:(int)btnnum {
+    UIButton *btn = [btnArray objectAtIndex:btnnum];
+    btn.enabled = enabled;
+}
+
+- (void) addSpecialView:(UIView*)view btnNumber:(int)btnnum {
+    
+    
+}
+
+
 
 
 

@@ -102,9 +102,9 @@ static float deltaAngle;
     [self.delegate rotateDidChangeValue:[NSNumber numberWithInt:0]];
 }
 
-- (void) setImageFiles:(NSArray*)icons downBtn:(NSString*)down upBtn:(NSString*)up background:(NSString*)bg center:(NSString*)cen sector:(NSString*)sec1 sectorSel:(NSString*)sec2 {
+- (void) setImageFiles:(NSArray*)iconsImage downBtn:(NSString*)down upBtn:(NSString*)up background:(NSString*)bg center:(NSString*)cen sector:(NSString*)sec1 sectorSel:(NSString*)sec2 {
     
-    iconsFile = [NSArray arrayWithArray:icons];
+    iconsFile = [NSArray arrayWithArray:iconsImage];
     bgImage = [UIImage imageNamed:bg];
     centerImage = [UIImage imageNamed:cen];
     sectorImage = [UIImage imageNamed:sec1];

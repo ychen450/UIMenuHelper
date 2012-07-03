@@ -20,15 +20,15 @@
 - (IBAction)swipeUpDetected:(UISwipeGestureRecognizer *)sender {
     if (square == nil) {
         square = [[SquareMenu alloc] initWithFrame:CGRectMake(0, 0, 320, 200) andDelegate:self withSections:6];
-        // set icon image (array)
-        // set background image 
+        NSArray *icons = [NSArray arrayWithObjects:@"myicon0.png", @"", @"myicon2.png", @"myicon3.png", @"myicon4.png", @"myicon5.png", nil];
+        [square setImageFiles:icons background:@"mysqabg.png"];
+        [square setEnable:NO btnNumber:1];
     }
     if (squareup == NO) {
         [self.view addSubview:square];
         [square slideup];
         
         [square addNotifAt:3 Number:4];
-        [square addNotifAt:1 Number:2];
         squareup = YES;
     } else {
         [square closedown];

@@ -15,6 +15,11 @@
     
     NSMutableArray *btnArray;
     NSMutableArray *imageArray;
+    
+    UIImage *bgImage;
+    NSArray *iconsFile;
+    UIImage *sectorImage;
+    UIImage *selectSectorImage;
 }
 
 @property (weak) id <SquareMenuProtocol> delegate;
@@ -23,12 +28,15 @@
 
 - (id) initWithFrame:(CGRect)frame andDelegate:(id)del withSections:(int)sectionsNumber;
 - (void) initSquare;
+- (void) setImageFiles:(NSArray*)icons background:(NSString*)bg;
 - (IBAction)selectSquare:(id)sender;
 
 - (void) slideup;
 - (void) closedown;
 
 - (void) addNotifAt:(int)btnnum Number:(int)notnum;
+- (void) setEnable:(BOOL)enabled btnNumber:(int)btnnum;
+- (void) addSpecialView:(UIView*)view btnNumber:(int)btnnum;
 
 @end
 

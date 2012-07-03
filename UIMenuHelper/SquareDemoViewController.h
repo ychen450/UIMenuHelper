@@ -13,6 +13,7 @@
 @interface SquareDemoViewController : UIViewController<SquareMenuProtocol> {
     
     BOOL squareup;
+    BOOL squareDownEnable;
     
     UIView *contentContainerView;
 }

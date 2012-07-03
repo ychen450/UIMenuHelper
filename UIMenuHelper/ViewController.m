@@ -153,9 +153,9 @@
         rotateDemoViewController.rotateMode = 2;
     } else if ([[segue identifier] isEqualToString:@"GoSquare"]) {
         
-        SquareDemoViewController *squareDemoViewController = [segue destinationViewController];
-        NSArray *viewControllers = [NSArray arrayWithObjects:page1ViewController, page2ViewController, page3ViewController, page4ViewController, page5ViewController, page6ViewController, nil];
-        squareDemoViewController.viewControllers = viewControllers;
+//        SquareDemoViewController *squareDemoViewController = [segue destinationViewController];
+//        NSArray *viewControllers = [NSArray arrayWithObjects:page1ViewController, page2ViewController, page3ViewController, page4ViewController, page5ViewController, page6ViewController, nil];
+//        squareDemoViewController.viewControllers = viewControllers;
     }
                
 }

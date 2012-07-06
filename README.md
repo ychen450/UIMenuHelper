@@ -8,8 +8,8 @@ iOS Rotate and Square Menu Helper
 * Square menu that can slide up through swipe gesture and present notification.
 * Menus control and present the selected child view controllers. 
 
-##Screenshot:
-![Screenshot](https://github.com/ychen450/UIMenuHelper/raw/master/screenShot2.png)
+//##Screenshot:
+//![Screenshot](https://github.com/ychen450/UIMenuHelper/raw/master/screenShot2.png)
 
 
 ##How to use:

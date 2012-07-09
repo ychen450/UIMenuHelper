@@ -18,7 +18,7 @@ static float deltaAngle;
 
 @implementation RotateMenu
 
-@synthesize startTransform, container, currentValue, previousValue, delegate, wheelCenter, cloveNames, numberOfSections, images, rotateEnable, iconFaceDown, moveEnable;
+@synthesize startTransform, container, currentValue, previousValue, delegate, wheelCenter, cloveNames, numberOfSections, images, rotateEnable, iconFaceDown, moveEnable, rotateAutoClose;
 
 
 - (id) initWithFrame:(CGRect)frame andDelegate:(id)del withSections:(int)sectionsNumber iconFaceDown:(BOOL)ifd{
@@ -38,6 +38,7 @@ static float deltaAngle;
     //self.center = CGPointMake(160, 256);
     rotateEnable = YES;
     moveEnable = YES;
+    rotateAutoClose = NO;
     container = [[UIView alloc] initWithFrame:self.frame];
     
     images = [NSMutableArray arrayWithCapacity:numberOfSections];
@@ -88,7 +89,7 @@ static float deltaAngle;
     [self addSubview:mask];
     
     rotateup = NO;
-    UIButton *rotateBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    rotateBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     rotateBtn.frame = CGRectMake(0, 0, 320, 32);
     [rotateBtn setBackgroundImage:downBtnImage forState:UIControlStateNormal];
     [rotateBtn addTarget:self action:@selector(ClickRotateBtn:) forControlEvents:UIControlEventTouchUpInside];
@@ -336,6 +337,17 @@ static float deltaAngle;
         [self.delegate rotateDidChangeValue:[NSNumber numberWithInt:currentValue]];
         previousValue = currentValue;
         
+        if (rotateAutoClose && rotateup==YES) {
+            [UIView animateWithDuration:0.6 delay:0.1 options:UIViewAnimationCurveEaseInOut
+                             animations:^{
+                                 self.frame = CGRectMake(0, 428, 320, 320);
+                                 rotateBtn.frame = CGRectMake(0, 0, 320, 32);
+                             }
+                             completion:nil];
+            //[self bringSubviewToFront:btn];
+            [rotateBtn setImage:downBtnImage forState:UIControlStateNormal];
+            rotateup = NO;
+        }
         return;
     }
     if (rotateEnable) {
@@ -383,6 +395,18 @@ static float deltaAngle;
     } else {
         UIImageView *iv = [images objectAtIndex:currentValue];
         iv.image = selectSectorImage;
+    }
+    
+    if (rotateAutoClose && rotateup==YES) {
+        [UIView animateWithDuration:0.6 delay:0.1 options:UIViewAnimationCurveEaseInOut
+                         animations:^{
+                             self.frame = CGRectMake(0, 428, 320, 320);
+                             rotateBtn.frame = CGRectMake(0, 0, 320, 32);
+                         }
+                         completion:nil];
+        //[self bringSubviewToFront:btn];
+        [rotateBtn setImage:downBtnImage forState:UIControlStateNormal];
+        rotateup = NO;
     }
 }
 

@@ -40,8 +40,8 @@
     [segAngles addObject:[NSNumber numberWithFloat:pievalue * 2.0 * M_PI]];
 	[segAngles addObject:[NSNumber numberWithFloat:(1.0-pievalue) * 2.0 * M_PI]];
     
-	float sAngle = 0.0;
-	float radius = minDimension/2.0;
+	float sAngle = -M_PI_2;
+	float radius = minDimension/3.0;
 	for( int i=0; i<[segAngles count]; i++ )
 	{
 		float eAngle = sAngle + [[segAngles objectAtIndex:i] floatValue];
@@ -51,23 +51,44 @@
 		CGContextMoveToPoint(c, o.x, o.y);
 		CGContextAddArc(c, o.x, o.y, radius, sAngle, eAngle, 0);
         if (i==0) {
-            CGContextSetFillColorWithColor(c, [color1 CGColor]);
+            //CGContextSetFillColorWithColor(c, color1.CGColor);
+            CGContextSetRGBFillColor(c, 203./255., 51./255., 51./255., 1.0);
         } else {
-            CGContextSetFillColorWithColor(c, [color2 CGColor]);
+            //CGContextSetFillColorWithColor(c, color2.CGColor);
+            CGContextSetRGBFillColor(c, 250./255., 153./255., 51./255., 1.0);
         }
 		CGContextFillPath(c);
         
 		sAngle = eAngle;
 	}
     
-    CGContextSetFillColorWithColor(c, [UIColor whiteColor].CGColor);
-    CGContextFillEllipseInRect(c, CGRectMake(10, 10, 40, 40));
+    //CGContextSetFillColorWithColor(c, [UIColor whiteColor].CGColor);
+    //CGContextFillEllipseInRect(c, CGRectMake(f.size.width/2-radius*0.6, f.size.height/2-radius*0.6, radius*1.2, radius*1.2));
     
-    UILabel *lbNumber = [[UILabel alloc] initWithFrame:CGRectMake(10, 10, 40, 40)];
+    UIImageView *pattern = [[UIImageView alloc] initWithFrame:CGRectMake(f.size.width/2-radius, f.size.height/2-radius, radius*2, radius*2)];
+    pattern.image = [UIImage imageNamed:@"pattern.png"];
+    [self addSubview:pattern];
+    UIImageView *center = [[UIImageView alloc] initWithFrame:CGRectMake(f.size.width/2-radius*0.6, f.size.height/2-radius*0.6, radius*1.2, radius*1.2)];
+    center.image = [UIImage imageNamed:@"circle.png"];
+    [self addSubview:center];
+    
+    UILabel *lbNumber = [[UILabel alloc] initWithFrame:CGRectMake(f.size.width/2-radius*0.6, f.size.height/2-radius*0.6, radius*1.2, radius*1.2)];
     lbNumber.backgroundColor = [UIColor clearColor];
     lbNumber.textAlignment = UITextAlignmentCenter;
-    lbNumber.font = [UIFont systemFontOfSize:12];
+    
+    lbNumber.numberOfLines = 1;
+    lbNumber.minimumFontSize = 18.0;
+    lbNumber.adjustsFontSizeToFitWidth = YES;
     lbNumber.text = [NSString stringWithFormat:@"%d",220];
+    float fontSize = 40.0;
+    CGFloat width = 1.0;
+    while (width>0) {
+        width = [@"220" sizeWithFont:[UIFont fontWithName:@"Helvetica" size:fontSize]].width;
+        fontSize = fontSize - 2.0;
+        width = width - radius;
+    }
+    lbNumber.font = [UIFont fontWithName:@"Helvetica" size:fontSize];
+    
     [self addSubview:lbNumber];
 }
 

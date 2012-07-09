@@ -62,8 +62,8 @@
     
     // add special view to btn 1
     PieChart *piechart = [[PieChart alloc] initWithFrame:CGRectMake(0, 0, square.frame.size.width/3, square.frame.size.height/2)];
-    piechart.pievalue = 0.3;
-    piechart.color1 = [UIColor redColor];
+    piechart.pievalue = 0.6;
+    piechart.color1 = [UIColor colorWithRed:0.6 green:0.3 blue:0.2 alpha:1.0];//[UIColor redColor]; 
     piechart.color2 = [UIColor yellowColor];
     piechart.midtext = @"220";
     [square addSpecialView:piechart btnNumber:1];

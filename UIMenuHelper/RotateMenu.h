@@ -25,6 +25,8 @@
     UIImage *upBtnImage;
     UIImage *downBtnImage;
     
+    UIButton *rotateBtn;
+    
     NSMutableArray *cloveArray;
     NSMutableArray *icons;
     NSMutableArray *iconTransform;
@@ -39,6 +41,7 @@
 @property int numberOfSections;
 @property BOOL moveEnable;
 @property BOOL rotateEnable;
+@property BOOL rotateAutoClose;
 @property BOOL iconFaceDown;
 @property CGPoint wheelCenter;
 @property (nonatomic, strong) NSMutableDictionary *cloveNames;

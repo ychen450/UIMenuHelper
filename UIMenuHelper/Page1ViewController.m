@@ -8,6 +8,7 @@
 //  Released under the MIT License.
 
 #import "Page1ViewController.h"
+#import "PieChart.h"
 
 @implementation Page1ViewController
 
@@ -49,6 +50,15 @@
     // Do any additional setup after loading the view from its nib.
     
     NSLog(@"page1 view did load");
+    
+    PieChart *piechart = [[PieChart alloc] initWithFrame:CGRectMake(100, 0, 200, 200)];
+    piechart.pievalue = 0.3;
+    piechart.color1 = [UIColor redColor];
+    piechart.color2 = [UIColor yellowColor];
+    piechart.midtext = @"220";
+    [self.view addSubview:piechart];
+    
+    
 }
 
 - (void)viewDidUnload

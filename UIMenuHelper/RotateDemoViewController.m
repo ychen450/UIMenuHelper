@@ -41,9 +41,11 @@
         [wheel setImageFiles:icons  downBtn:@"myrotbtn1.png" upBtn:@"myrotbtn2.png" background:@"myrotbg.png" center:@"myrotcenter.png" sector:@"myrotsec.png" sectorSel:@"myrotsec2.png"];
         wheel.rotateEnable = NO;
         wheel.moveEnable = NO;
+        wheel.rotateAutoClose = YES;
         wheel.center = CGPointMake(160, 256);
         wheel.frame = CGRectMake(0, 428, 320, 320);
         [self.view addSubview:wheel];
+        
     } else if (_rotateMode==1) {
         wheel = [[RotateMenu alloc] initWithFrame:CGRectMake(0, 0 , 320, 320) 
                                       andDelegate:self 
@@ -57,7 +59,7 @@
         [self.view addSubview:wheel];
         
     } else if (_rotateMode==2) {
-        wheel = [[RotateMenu alloc] initWithFrame:CGRectMake(0, 0 , 320, 320) 
+        wheel = [[RotateMenu alloc] initWithFrame:CGRectMake(0, 0, 320, 320) 
                                       andDelegate:self 
                                      withSections:7
                                      iconFaceDown:NO];

@@ -11,7 +11,7 @@
 #import "RotateDemoViewController.h"
 #import "SquareDemoViewController.h"
 
-@interface ViewController : UITableViewController <RotateControllerDelegate> {
+@interface ViewController : UITableViewController {
     
     
 }

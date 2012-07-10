@@ -61,11 +61,11 @@
     [square addNotifAt:3 Number:4];
     
     // add special view to btn 1
-    PieChart *piechart = [[PieChart alloc] initWithFrame:CGRectMake(0, 0, square.frame.size.width/3, square.frame.size.height/2)];
-    piechart.pievalue = 0.6;
-    piechart.color1 = [UIColor colorWithRed:0.6 green:0.3 blue:0.2 alpha:1.0];//[UIColor redColor]; 
-    piechart.color2 = [UIColor yellowColor];
-    piechart.midtext = @"220";
+    PieChart *piechart = [[PieChart alloc] initWithFrame:CGRectMake(0, 0, square.frame.size.width/3, square.frame.size.height/2) 
+                                                   value:0.6 
+                                                setColor:203./255. green1:51./255. blue1:51./255. red2:250./255. green2:153./255. blue2:51./255. 
+                                                setImage:@"circle.png" patternImage:@"pattern.png" 
+                                                 setText:@"220" text2:@"POINTS" font:@"Helvetica"];
     [square addSpecialView:piechart btnNumber:1];
     
     contentContainerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 416)];

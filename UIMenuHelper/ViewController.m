@@ -76,14 +76,6 @@
 //    UISwipeGestureRecognizer *swipeDownRecognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(swipeDownDetected:)];
 //    swipeDownRecognizer.direction = UISwipeGestureRecognizerDirectionDown;
 //    [self.view addGestureRecognizer:swipeDownRecognizer];
-//    
-//    // PieChart usage:
-//    PieChart *piechart = [[PieChart alloc] initWithFrame:CGRectMake(160, 30, 100, 100)];
-//    piechart.pievalue = 0.2;
-//    piechart.color1 = [UIColor redColor];
-//    piechart.color2 = [UIColor yellowColor];
-//    piechart.midtext = @"220";
-//    [self.view addSubview:piechart];
 }
 
 - (void)viewDidUnload
@@ -122,34 +114,17 @@
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    Page1ViewController *page1ViewController = [[Page1ViewController alloc] initWithNibName:@"Page1ViewController" bundle:nil];
-    Page2ViewController *page2ViewController = [[Page2ViewController alloc] initWithNibName:@"Page2ViewController" bundle:nil];
-    Page3ViewController *page3ViewController = [[Page3ViewController alloc] initWithNibName:@"Page3ViewController" bundle:nil];
-    Page4ViewController *page4ViewController = [[Page4ViewController alloc] initWithNibName:@"Page4ViewController" bundle:nil];
-    Page5ViewController *page5ViewController = [[Page5ViewController alloc] initWithNibName:@"Page5ViewController" bundle:nil];
-    Page6ViewController *page6ViewController = [[Page6ViewController alloc] initWithNibName:@"Page6ViewController" bundle:nil];
-    Page7ViewController *page7ViewController = [[Page7ViewController alloc] initWithNibName:@"Page7ViewController" bundle:nil];
-    
     if ([[segue identifier] isEqualToString:@"GoRotate0"]) {
         
         RotateDemoViewController *rotateDemoViewController = [segue destinationViewController];
-        rotateDemoViewController.delegate = self;
-        NSArray *viewControllers = [NSArray arrayWithObjects:page1ViewController, page2ViewController, page3ViewController, page4ViewController, page5ViewController, page6ViewController, page7ViewController, nil];
-        rotateDemoViewController.viewControllers = viewControllers;
         rotateDemoViewController.rotateMode = 0;
     } else if ([[segue identifier] isEqualToString:@"GoRotate1"]) {
         
         RotateDemoViewController *rotateDemoViewController = [segue destinationViewController];
-        rotateDemoViewController.delegate = self;
-        NSArray *viewControllers = [NSArray arrayWithObjects:page1ViewController, page2ViewController, page3ViewController, page4ViewController, page5ViewController, page6ViewController, page7ViewController, nil];
-        rotateDemoViewController.viewControllers = viewControllers;
         rotateDemoViewController.rotateMode = 1;
     } else if ([[segue identifier] isEqualToString:@"GoRotate2"]) {
         
         RotateDemoViewController *rotateDemoViewController = [segue destinationViewController];
-        rotateDemoViewController.delegate = self;
-        NSArray *viewControllers = [NSArray arrayWithObjects:page1ViewController, page2ViewController, page3ViewController, page4ViewController, page5ViewController, page6ViewController, page7ViewController, nil];
-        rotateDemoViewController.viewControllers = viewControllers;
         rotateDemoViewController.rotateMode = 2;
     } else if ([[segue identifier] isEqualToString:@"GoSquare"]) {
         

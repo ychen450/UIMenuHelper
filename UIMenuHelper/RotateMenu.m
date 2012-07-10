@@ -18,7 +18,7 @@ static float deltaAngle;
 
 @implementation RotateMenu
 
-@synthesize startTransform, container, currentValue, previousValue, delegate, wheelCenter, cloveNames, numberOfSections, images, rotateEnable, iconFaceDown, moveEnable, rotateAutoClose;
+@synthesize startTransform, container, currentValue, previousValue, delegate, wheelCenter, cloveNames, numberOfSections, images, rotateEnable, iconFaceDown, moveEnable, rotateAutoClose, initViewController;
 
 
 - (id) initWithFrame:(CGRect)frame andDelegate:(id)del withSections:(int)sectionsNumber iconFaceDown:(BOOL)ifd{
@@ -59,16 +59,17 @@ static float deltaAngle;
         im.transform = CGAffineTransformMakeRotation(angleSize*(i));
         im.tag = i;
         
-        if (i == 0) {
-            im.image = selectSectorImage;
-        }
-        
         UIImageView *cloveImage = [[UIImageView alloc] initWithFrame:CGRectMake(22.5, 12, 85, 85)];
         cloveImage.tag = i;
         cloveImage.image = [UIImage imageNamed:[iconsFile objectAtIndex:i]];
         if (iconFaceDown) {
             cloveImage.transform = CGAffineTransformMakeRotation(-angleSize*(i));
         }
+        if (i == initViewController) {
+            im.image = selectSectorImage;
+            cloveImage.image = [UIImage imageNamed:[onIconsFile objectAtIndex:i]];
+        }
+        
         [im addSubview:cloveImage];
         [icons addObject:cloveImage];
         
@@ -100,12 +101,43 @@ static float deltaAngle;
     } else {
         [self buildClovesOdd];
     }
-    [self.delegate rotateDidChangeValue:[NSNumber numberWithInt:0]];
+    //[self.delegate rotateDidChangeValue:[NSNumber numberWithInt:initViewController]];
+    if (initViewController != 0) {
+        
+        currentValue = initViewController;
+        
+        NSMutableDictionary *dic = [cloveArray objectAtIndex:currentValue];
+        float trans = [[dic objectForKey:@"midValue"] floatValue];
+        CGAffineTransform t = CGAffineTransformRotate(container.transform, trans);
+        container.transform = t;
+        
+        if (iconFaceDown) {
+            [iconTransform removeAllObjects];
+            for (UIImageView *iconiv in icons) {
+                NSValue *v = [NSValue valueWithCGAffineTransform:iconiv.transform];
+                [iconTransform addObject:v];
+            }
+            for (UIImageView *iconiv in icons) {
+                CGAffineTransform at = [[iconTransform objectAtIndex:iconiv.tag] CGAffineTransformValue];
+                iconiv.transform = CGAffineTransformRotate(at, -trans);
+            }
+        }
+        
+        UIImageView *iv = [images objectAtIndex:currentValue];
+        iv.image = selectSectorImage;
+        UIImageView *iconv = [icons objectAtIndex:currentValue];
+        iconv.image = [UIImage imageNamed:[onIconsFile objectAtIndex:currentValue]];
+        
+    } else {
+        currentValue = 0;
+    }
+    
 }
 
-- (void) setImageFiles:(NSArray*)iconsImage downBtn:(NSString*)down upBtn:(NSString*)up background:(NSString*)bg center:(NSString*)cen sector:(NSString*)sec1 sectorSel:(NSString*)sec2 {
+- (void) setImageFiles:(NSArray*)iconsImage onIcons:(NSArray*)onIconsImage downBtn:(NSString*)down upBtn:(NSString*)up background:(NSString*)bg center:(NSString*)cen sector:(NSString*)sec1 sectorSel:(NSString*)sec2 {
     
     iconsFile = [NSArray arrayWithArray:iconsImage];
+    onIconsFile = [NSArray arrayWithArray:onIconsImage];
     bgImage = [UIImage imageNamed:bg];
     centerImage = [UIImage imageNamed:cen];
     sectorImage = [UIImage imageNamed:sec1];
@@ -226,6 +258,8 @@ static float deltaAngle;
     
     UIImageView *iv = [images objectAtIndex:currentValue];
     iv.image = sectorImage;
+    UIImageView *iconv = [icons objectAtIndex:currentValue];
+    iconv.image = [UIImage imageNamed:[iconsFile objectAtIndex:currentValue]];
     
 	float dx = delta.x  - container.center.x;
 	float dy = delta.y  - container.center.y;
@@ -333,6 +367,8 @@ static float deltaAngle;
         }
         UIImageView *iv = [images objectAtIndex:currentValue];
         iv.image = selectSectorImage;
+        UIImageView *iconv = [icons objectAtIndex:currentValue];
+        iconv.image = [UIImage imageNamed:[onIconsFile objectAtIndex:currentValue]];
         
         [self.delegate rotateDidChangeValue:[NSNumber numberWithInt:currentValue]];
         previousValue = currentValue;
@@ -389,12 +425,16 @@ static float deltaAngle;
         
         UIImageView *iv = [images objectAtIndex:currentValue];
         iv.image = selectSectorImage;
+        UIImageView *iconv = [icons objectAtIndex:currentValue];
+        iconv.image = [UIImage imageNamed:[onIconsFile objectAtIndex:currentValue]];
         
         [self.delegate rotateDidChangeValue:[NSNumber numberWithInt:currentValue]];
         previousValue = currentValue;
     } else {
         UIImageView *iv = [images objectAtIndex:currentValue];
         iv.image = selectSectorImage;
+        UIImageView *iconv = [icons objectAtIndex:currentValue];
+        iconv.image = [UIImage imageNamed:[onIconsFile objectAtIndex:currentValue]];
     }
     
     if (rotateAutoClose && rotateup==YES) {

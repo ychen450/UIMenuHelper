@@ -8,10 +8,13 @@
 //  Released under the MIT License.
 
 #import <UIKit/UIKit.h>
+#import "PieChart.h"
 
 @interface Page1ViewController : UIViewController {
     
     BOOL btntemp;
+    
+    PieChart *pie;
 }
 
 @property (strong, nonatomic) IBOutlet UIButton *page1btn;

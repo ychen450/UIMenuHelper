@@ -8,15 +8,20 @@
 //  Released under the MIT License.
 
 #import "RotateDemoViewController.h"
+#import "Page1ViewController.h"
+#import "Page2ViewController.h"
+#import "Page3ViewController.h"
+#import "Page4ViewController.h"
+#import "Page5ViewController.h"
+#import "Page6ViewController.h"
+#import "Page7ViewController.h"
 
 @implementation RotateDemoViewController
 
-@synthesize pullRotateBtn;
 @synthesize wheel;
 
 @synthesize viewControllers = _viewControllers;
 @synthesize selectedIndex = _selectedIndex;
-@synthesize delegate = _delegate;
 @synthesize selectedViewController = _selectedViewController;
 @synthesize rotateMode = _rotateMode;
 
@@ -24,24 +29,25 @@
     
     [super viewDidLoad];
     
-	contentContainerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 384)];
-	[self.view addSubview:contentContainerView];
+    int initViewIndex = 2;
+    int initViewIndexChild = 1;
     
-    UIViewController *toViewController;
-    toViewController = [_viewControllers objectAtIndex:0];
-    toViewController.view.frame = contentContainerView.bounds;
-    [contentContainerView addSubview:toViewController.view];
+    contentContainerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 384)];
+	[self.view addSubview:contentContainerView];
     
     if (_rotateMode==0) {
         wheel = [[RotateMenu alloc] initWithFrame:CGRectMake(0, 0 , 320, 320) 
                                       andDelegate:self 
                                      withSections:7
                                      iconFaceDown:YES];
+        wheel.initViewController = initViewIndex;
         NSArray *icons = [NSArray arrayWithObjects:@"myicon0.png", @"myicon1.png", @"myicon2.png", @"myicon3.png", @"myicon4.png", @"myicon5.png", @"myicon6.png", nil];
-        [wheel setImageFiles:icons  downBtn:@"myrotbtn1.png" upBtn:@"myrotbtn2.png" background:@"myrotbg.png" center:@"myrotcenter.png" sector:@"myrotsec.png" sectorSel:@"myrotsec2.png"];
+        NSArray *onicons = [NSArray arrayWithObjects:@"circle.png", @"circle.png", @"circle.png", @"circle.png", @"circle.png", @"circle.png", @"circle.png", nil];
+        [wheel setImageFiles:icons onIcons:onicons downBtn:@"myrotbtn1.png" upBtn:@"myrotbtn2.png" background:@"myrotbg.png" center:@"myrotcenter.png" sector:@"myrotsec.png" sectorSel:@"myrotsec2.png"];
         wheel.rotateEnable = NO;
         wheel.moveEnable = NO;
         wheel.rotateAutoClose = YES;
+        
         wheel.center = CGPointMake(160, 256);
         wheel.frame = CGRectMake(0, 428, 320, 320);
         [self.view addSubview:wheel];
@@ -51,8 +57,10 @@
                                       andDelegate:self 
                                      withSections:7
                                      iconFaceDown:YES];
+        wheel.initViewController = initViewIndex;
         NSArray *icons = [NSArray arrayWithObjects:@"myicon0.png", @"myicon1.png", @"myicon2.png", @"myicon3.png", @"myicon4.png", @"myicon5.png", @"myicon6.png", nil];
-        [wheel setImageFiles:icons  downBtn:@"myrotbtn1.png" upBtn:@"myrotbtn2.png" background:@"myrotbg.png" center:@"myrotcenter.png" sector:@"myrotsec.png" sectorSel:@"myrotsec2.png"];
+        NSArray *onicons = [NSArray arrayWithObjects:@"circle.png", @"circle.png", @"circle.png", @"circle.png", @"circle.png", @"circle.png", @"circle.png", nil];
+        [wheel setImageFiles:icons onIcons:onicons downBtn:@"myrotbtn1.png" upBtn:@"myrotbtn2.png" background:@"myrotbg.png" center:@"myrotcenter.png" sector:@"myrotsec.png" sectorSel:@"myrotsec2.png"];
         wheel.rotateEnable = NO;
         wheel.center = CGPointMake(160, 256);
         wheel.frame = CGRectMake(0, 428, 320, 320);
@@ -63,19 +71,37 @@
                                       andDelegate:self 
                                      withSections:7
                                      iconFaceDown:NO];
+        wheel.initViewController = initViewIndex;
         NSArray *icons = [NSArray arrayWithObjects:@"myicon0.png", @"myicon1.png", @"myicon2.png", @"myicon3.png", @"myicon4.png", @"myicon5.png", @"myicon6.png", nil];
-        [wheel setImageFiles:icons  downBtn:@"myrotbtn1.png" upBtn:@"myrotbtn2.png" background:@"myrotbg.png" center:@"myrotcenter.png" sector:@"myrotsec.png" sectorSel:@"myrotsec2.png"];
+        NSArray *onicons = [NSArray arrayWithObjects:@"circle.png", @"circle.png", @"circle.png", @"circle.png", @"circle.png", @"circle.png", @"circle.png", nil];
+        [wheel setImageFiles:icons onIcons:onicons downBtn:@"myrotbtn1.png" upBtn:@"myrotbtn2.png" background:@"myrotbg.png" center:@"myrotcenter.png" sector:@"myrotsec.png" sectorSel:@"myrotsec2.png"];
         wheel.rotateEnable = YES;
         wheel.center = CGPointMake(160, 256);
         wheel.frame = CGRectMake(0, 428, 320, 320);
         [self.view addSubview:wheel];
     }
     
+    // set the child view controller to _viewController array
+    Page1ViewController *page1ViewController = [[Page1ViewController alloc] initWithNibName:@"Page1ViewController" bundle:nil];
+    Page3ViewController *page3ViewController = [[Page3ViewController alloc] initWithNibName:@"Page3ViewController" bundle:nil];
+    Page4ViewController *page4ViewController = [[Page4ViewController alloc] initWithNibName:@"Page4ViewController" bundle:nil];
+    Page6ViewController *page6ViewController = [[Page6ViewController alloc] initWithNibName:@"Page6ViewController" bundle:nil];
+    Page7ViewController *page7ViewController = [[Page7ViewController alloc] initWithNibName:@"Page7ViewController" bundle:nil];
+    _viewControllers = [NSArray arrayWithObjects:page1ViewController, page3ViewController, page4ViewController, page6ViewController, page7ViewController, nil];
+	for (UIViewController *viewController in _viewControllers) {
+		[self addChildViewController:viewController];
+		[viewController didMoveToParentViewController:self];
+	}
+    
+    UIViewController *toViewController = [_viewControllers objectAtIndex:initViewIndexChild];
+    toViewController.view.frame = contentContainerView.bounds;
+    [contentContainerView addSubview:toViewController.view];
+    _selectedViewController = toViewController;
+    _selectedIndex = initViewIndexChild;
 }
 
 
 - (void)viewDidUnload {
-    [self setPullRotateBtn:nil];
     [super viewDidUnload];
 }
 
@@ -87,69 +113,44 @@
 
 - (void) rotateDidChangeValue:(NSNumber *)newValue {
     
-    [self setSelectedIndex:[newValue integerValue] animated:YES];
-    NSLog(@"did changeValue");
+    int btntag = [newValue intValue];
+    switch (btntag) {
+        case 0: { 
+            [self setSelectedIndex:0 animated:YES];
+            break;}
+        case 1: { 
+            // for presenting view controller explicitly, use presentModelViewController or pushViewController
+            Page2ViewController *page2ViewController = [[Page2ViewController alloc] initWithNibName:@"Page2ViewController" bundle:nil];
+            [self presentModalViewController:page2ViewController animated:YES];
+            break;}
+        case 2: { 
+            // for changing the child view, set the index in the _viewControllers array
+            [self setSelectedIndex:1 animated:YES];
+            break;}
+        case 3: {
+            [self setSelectedIndex:2 animated:YES];
+            break;}
+        case 4: { 
+            Page5ViewController *page5ViewController = [[Page5ViewController alloc] initWithNibName:@"Page5ViewController" bundle:nil];
+            [self presentModalViewController:page5ViewController animated:YES];
+            break;}
+        case 5: { 
+            [self setSelectedIndex:3 animated:YES];
+            break;}
+        case 6: { 
+            [self setSelectedIndex:4 animated:YES];
+            break;}
+        default:
+            break;
+    }
 }
 
-
-- (void)setViewControllers:(NSArray *)newViewControllers
-{
-    NSLog(@"set view controllers");
-    
-	NSAssert([newViewControllers count] >= 2, @"RotateController requires at least two view controllers");
-    
-	UIViewController *oldSelectedViewController = self.selectedViewController;
-    
-	// Remove the old child view controllers.
-	for (UIViewController *viewController in _viewControllers)
-	{
-		[viewController willMoveToParentViewController:nil];
-		[viewController removeFromParentViewController];
-	}
-    
-	_viewControllers = [newViewControllers copy];
-    
-	// This follows the same rules as UITabBarController for trying to
-	// re-select the previously selected view controller.
-	NSUInteger newIndex = [_viewControllers indexOfObject:oldSelectedViewController];
-	if (newIndex != NSNotFound)
-		_selectedIndex = newIndex;
-	else if (newIndex < [_viewControllers count])
-		_selectedIndex = newIndex;
-	else
-		_selectedIndex = 0;
-    
-	// Add the new child view controllers.
-	for (UIViewController *viewController in _viewControllers)
-	{
-		[self addChildViewController:viewController];
-		[viewController didMoveToParentViewController:self];
-        
-        NSLog(@"add child view controller  %@",viewController);
-	}
-    
-    UIViewController *toViewController;
-    toViewController = [_viewControllers objectAtIndex:0];
-    toViewController.view.frame = contentContainerView.bounds;
-    [contentContainerView addSubview:toViewController.view];
-    
-}
-
-- (void)setSelectedIndex:(NSUInteger)newSelectedIndex
-{
-	[self setSelectedIndex:newSelectedIndex animated:YES];
-}
 
 - (void)setSelectedIndex:(NSUInteger)newSelectedIndex animated:(BOOL)animated
 {
 	NSAssert(newSelectedIndex < [self.viewControllers count], @"View controller index out of bounds");
     
-	if (![self isViewLoaded])
-	{
-        NSLog(@"not view loaded");
-		_selectedIndex = newSelectedIndex;
-	}
-	else if (_selectedIndex != newSelectedIndex)
+	if (_selectedIndex != newSelectedIndex)
 	{
 		UIViewController *fromViewController;
 		UIViewController *toViewController;
@@ -161,11 +162,12 @@
         
 		if (_selectedIndex != NSNotFound)
 		{
-			toViewController = self.selectedViewController;
+			toViewController = [_viewControllers objectAtIndex:_selectedIndex];
 		}
-            
+        
         toViewController.view.frame = contentContainerView.bounds;
         [contentContainerView addSubview:toViewController.view];
+        self.selectedViewController = toViewController;
 		
 		if (animated)
 		{
@@ -196,29 +198,6 @@
 		}
 	}
 }
-
-- (UIViewController *)selectedViewController
-{
-	if (self.selectedIndex != NSNotFound)
-		return [self.viewControllers objectAtIndex:self.selectedIndex];
-	else
-		return nil;
-}
-
-- (void)setSelectedViewController:(UIViewController *)newSelectedViewController
-{
-	[self setSelectedViewController:newSelectedViewController animated:YES];
-}
-
-- (void)setSelectedViewController:(UIViewController *)newSelectedViewController animated:(BOOL)animated;
-{
-	NSUInteger index = [self.viewControllers indexOfObject:newSelectedViewController];
-	if (index != NSNotFound)
-		[self setSelectedIndex:index animated:animated];
-}
-
-
-
 
 
 

@@ -20,6 +20,7 @@
     UIImage *bgImage;
     UIImage *centerImage;
     NSArray *iconsFile;
+    NSArray *onIconsFile;
     UIImage *sectorImage;
     UIImage *selectSectorImage;
     UIImage *upBtnImage;
@@ -39,6 +40,7 @@
 @property int currentValue;
 @property int previousValue;
 @property int numberOfSections;
+@property int initViewController;
 @property BOOL moveEnable;
 @property BOOL rotateEnable;
 @property BOOL rotateAutoClose;
@@ -51,7 +53,7 @@
 - (void) buildClovesEven;
 - (void) buildClovesOdd;
 - (float) calculateDistanceFromCenter:(CGPoint)point;
-- (void) setImageFiles:(NSArray*)iconsImage downBtn:(NSString*)down upBtn:(NSString*)up background:(NSString*)bg center:(NSString*)cen sector:(NSString*)sec1 sectorSel:(NSString*)sec2;
+- (void) setImageFiles:(NSArray*)iconsImage onIcons:(NSArray*)onIconsImage downBtn:(NSString*)down upBtn:(NSString*)up background:(NSString*)bg center:(NSString*)cen sector:(NSString*)sec1 sectorSel:(NSString*)sec2;
 
 - (IBAction)ClickRotateBtn:(id)sender;
 

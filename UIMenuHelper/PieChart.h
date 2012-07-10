@@ -10,13 +10,34 @@
 #import <UIKit/UIKit.h>
 #import <QuartzCore/QuartzCore.h>
 
-@interface PieChart : UIView 
+@interface PieChart : UIView {
 
-@property float pievalue;
-@property (nonatomic, weak) NSString *midtext;
-@property (nonatomic, weak) UIColor *color1;
-@property (nonatomic, weak) UIColor *color2;
+    float radius;
+    
+    float red1;
+    float red2;
+    float green1;
+    float green2;
+    float blue1;
+    float blue2;
+    
+    NSString* centerImage;
+    NSString* patternImage;
+    NSString* text1;
+    NSString* text2;
+    NSString* fontName;
+    
+    float currentValue;
+    
+    BOOL endInit;
+}
 
-- (id)initWithFrame:(CGRect)frame;
+- (id)initWithFrame:(CGRect)frame 
+              value:(float)v 
+           setColor:(float)r1 green1:(float)g1 blue1:(float)b1 red2:(float)r2 green2:(float)g2 blue2:(float)b2 
+           setImage:(NSString*)center patternImage:(NSString*)pattern 
+            setText:(NSString*)t1 text2:(NSString*)t2 font:(NSString*)f;
+
+- (void)setPieValue:(float)v;
 
 @end

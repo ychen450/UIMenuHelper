@@ -8,7 +8,7 @@
 //  Released under the MIT License.
 
 #import "Page1ViewController.h"
-#import "PieChart.h"
+
 
 @implementation Page1ViewController
 
@@ -23,6 +23,8 @@
         [page1btn setTitle:@"button" forState:UIControlStateNormal];
         btntemp = !btntemp;
     }
+    
+    [pie setPieValue:0.9];
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -51,12 +53,12 @@
     
     NSLog(@"page1 view did load");
     
-    PieChart *piechart = [[PieChart alloc] initWithFrame:CGRectMake(100, 0, 200, 200)];
-    piechart.pievalue = 0.3;
-    piechart.color1 = [UIColor redColor];
-    piechart.color2 = [UIColor yellowColor];
-    piechart.midtext = @"220";
-    [self.view addSubview:piechart];
+    pie = [[PieChart alloc] initWithFrame:CGRectMake(100, 0, 200, 200) 
+                                                   value:0.3 
+                                                setColor:203./255. green1:51./255. blue1:51./255. red2:250./255. green2:153./255. blue2:51./255. 
+                                                setImage:@"circle.png" patternImage:@"pattern.png" 
+                                                 setText:@"220" text2:@"POINTS" font:@"Helvetica"];
+    [self.view addSubview:pie];
     
     
 }

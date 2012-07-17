@@ -24,7 +24,7 @@
         btntemp = !btntemp;
     }
     
-    [pie setPieValue:0.9];
+    [pie setPieValue:0.9 text1:@"500"];
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil

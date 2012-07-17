@@ -83,7 +83,7 @@
         civ.image = [UIImage imageNamed:centerImage];
         [self addSubview:civ];
         
-        UILabel *lbNumber = [[UILabel alloc] initWithFrame:CGRectMake(f.size.width/2-radius*0.6, f.size.height/2-radius*0.7, radius*1.2, radius*1.2)];
+        lbNumber = [[UILabel alloc] initWithFrame:CGRectMake(f.size.width/2-radius*0.6, f.size.height/2-radius*0.7, radius*1.2, radius*1.2)];
         lbNumber.backgroundColor = [UIColor clearColor];
         lbNumber.textAlignment = UITextAlignmentCenter;
         lbNumber.textColor = [UIColor colorWithRed:red1 green:green1 blue:blue1 alpha:1.0];
@@ -119,14 +119,17 @@
         lbPoint.font = [UIFont fontWithName:fontName size:fontSize];
         [self addSubview:lbPoint];
         endInit = YES;
+    } else {
+        lbNumber.text = text1;
     }
 }
 
 
-- (void)setPieValue:(float)v {
+- (void)setPieValue:(float)v text1:(NSString*)t1 {
     
     if (v!=currentValue) {
         currentValue = v;
+        text1 = t1;
         [self setNeedsDisplay];
     }
 }

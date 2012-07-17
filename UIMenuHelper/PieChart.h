@@ -27,6 +27,8 @@
     NSString* text2;
     NSString* fontName;
     
+    UILabel *lbNumber;
+    
     float currentValue;
     
     BOOL endInit;
@@ -38,6 +40,6 @@
            setImage:(NSString*)center patternImage:(NSString*)pattern 
             setText:(NSString*)t1 text2:(NSString*)t2 font:(NSString*)f;
 
-- (void)setPieValue:(float)v;
+- (void)setPieValue:(float)v text1:(NSString*)t1;
 
 @end

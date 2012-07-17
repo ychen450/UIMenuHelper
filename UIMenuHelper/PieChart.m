@@ -91,7 +91,7 @@
         lbNumber.minimumFontSize = 10.0;
         lbNumber.adjustsFontSizeToFitWidth = YES;
         lbNumber.text = text1;
-        float fontSize = 40.0;
+        float fontSize = 50.0;
         CGFloat width = 1.0;
         while (width>0) {
             width = [text1 sizeWithFont:[UIFont fontWithName:fontName size:fontSize]].width;
@@ -109,7 +109,7 @@
         lbPoint.minimumFontSize = 8.0;
         lbPoint.adjustsFontSizeToFitWidth = YES;
         lbPoint.text = text2;
-        fontSize = 40.0;
+        fontSize = 50.0;
         width = 1.0;
         while (width>0) {
             width = [text2 sizeWithFont:[UIFont fontWithName:fontName size:fontSize]].width;
@@ -127,7 +127,7 @@
     
     if (v!=currentValue) {
         currentValue = v;
-        [self drawRect:self.bounds];
+        [self setNeedsDisplay];
     }
 }
 
